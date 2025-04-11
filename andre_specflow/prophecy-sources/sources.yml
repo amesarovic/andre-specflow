@@ -1,0 +1,130 @@
+---
+version: 2
+sources:
+- name: "trading.raw"
+  description: ""
+  database: "trading"
+  schema: "raw"
+  tables:
+  - name: "trade_file_1"
+    quoting:
+      identifier: true
+    columns:
+    - name: "deal_id"
+      dataType:
+        type: "Integer"
+    - name: "security_id"
+      dataType:
+        type: "Integer"
+    - name: "currency"
+      dataType:
+        type: "String"
+    - name: "portfolio_name"
+      dataType:
+        type: "String"
+    - name: "location"
+      dataType:
+        type: "String"
+    - name: "counterparty_name"
+      dataType:
+        type: "String"
+    - name: "face_value"
+      dataType:
+        type: "Integer"
+    - name: "trader_name"
+      dataType:
+        type: "String"
+    - name: "trade_date"
+      dataType:
+        type: "Integer"
+    - name: "settlement_date"
+      dataType:
+        type: "Integer"
+    - name: "maturity_date"
+      dataType:
+        type: "Integer"
+    - name: "buy_sell"
+      dataType:
+        type: "String"
+    - name: "trade_type"
+      dataType:
+        type: "String"
+  - name: "trade_file_2"
+    quoting:
+      identifier: true
+    columns:
+    - name: "deal_id"
+      dataType:
+        type: "Integer"
+    - name: "security_id"
+      dataType:
+        type: "Integer"
+    - name: "currency"
+      dataType:
+        type: "String"
+    - name: "portfolio_name"
+      dataType:
+        type: "String"
+    - name: "reval_date"
+      dataType:
+        type: "Date"
+    - name: "reval_value"
+      dataType:
+        type: "Integer"
+  - name: "securities_list"
+    quoting:
+      identifier: true
+    columns:
+    - name: "security_id"
+      dataType:
+        type: "String"
+    - name: "security_name"
+      dataType:
+        type: "String"
+    - name: "currency"
+      dataType:
+        type: "String"
+    - name: "start_date"
+      dataType:
+        type: "String"
+    - name: "maturity_date"
+      dataType:
+        type: "String"
+    - name: "issuer_type"
+      dataType:
+        type: "String"
+  - name: "portfolio_to_gl"
+    quoting:
+      identifier: true
+    columns:
+    - name: "portfolio_name"
+      dataType:
+        type: "String"
+    - name: "location"
+      dataType:
+        type: "String"
+    - name: "GL_Level_1"
+      dataType:
+        type: "String"
+    - name: "GL_Level_2"
+      dataType:
+        type: "String"
+    - name: "GL_Level_3"
+      dataType:
+        type: "String"
+  - name: "exchange_rate_table"
+    quoting:
+      identifier: true
+    columns:
+    - name: "Currency_1"
+      dataType:
+        type: "String"
+    - name: "Currency_2"
+      dataType:
+        type: "String"
+    - name: "Conversion_Rate"
+      dataType:
+        type: "Double"
+    - name: "Conversion_Rule"
+      dataType:
+        type: "String"

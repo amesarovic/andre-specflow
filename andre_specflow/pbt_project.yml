@@ -1,0 +1,342 @@
+name: andre_specflow
+description: ''
+version: 0.0.1
+author: admin@prophecy.io
+language: sql
+buildSystem: ''
+buildSystemDetails: null
+pipelines: {}
+datasets: {}
+templates: {}
+jobs: {}
+gemContainer:
+  languageVersion: ''
+  gemLibsVersion: ''
+  gems: {}
+  dependencies: null
+functions:
+  author: null
+  createdAt: '2025-04-11 14:58:12'
+  udfs: {}
+  udafs: {}
+  expressions: {}
+  airflowFunctions: {}
+  businessRules: {}
+subgraphs: {}
+sqlModels:
+  .prophecy/metadata/sqlmodels/enriched_trade_file_1:
+    name: enriched_trade_file_1
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: deal_id
+        dataType:
+          type: Integer
+      - name: security_id
+        dataType:
+          type: Integer
+      - name: currency
+        dataType:
+          type: String
+      - name: portfolio_name
+        dataType:
+          type: String
+      - name: location
+        dataType:
+          type: String
+      - name: counterparty_name
+        dataType:
+          type: String
+      - name: face_value
+        dataType:
+          type: Integer
+      - name: trader_name
+        dataType:
+          type: String
+      - name: trade_date
+        dataType:
+          type: Integer
+      - name: settlement_date
+        dataType:
+          type: Integer
+      - name: maturity_date
+        dataType:
+          type: String
+      - name: buy_sell
+        dataType:
+          type: String
+      - name: trade_type
+        dataType:
+          type: String
+      - name: reval_date
+        dataType:
+          type: Date
+      - name: reval_value
+        dataType:
+          type: Integer
+      - name: security_name
+        dataType:
+          type: String
+      - name: issuer_type
+        dataType:
+          type: String
+      - name: coupon_rate
+        dataType:
+          type: Decimal
+      - name: gl_level_1
+        dataType:
+          type: String
+      - name: gl_level_2
+        dataType:
+          type: String
+      - name: gl_level_3
+        dataType:
+          type: String
+      - name: exclude_flag
+        dataType:
+          type: String
+      - name: aud_revalue
+        dataType:
+          type: Double
+    description: null
+    author: admin@prophecy.io
+    files:
+    - models/enriched_trade_file_1.sql
+    - .prophecy/ide/models/enriched_trade_file_1.json
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-11 15:08:06'
+  .prophecy/metadata/sqlmodels/stock_availability:
+    name: stock_availability
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: total_aud_long_position_available
+        dataType:
+          type: Double
+      - name: asset
+        dataType:
+          type: String
+      - name: security_name
+        dataType:
+          type: Integer
+      - name: maturity_date
+        dataType:
+          type: String
+      - name: gl_level_1
+        dataType:
+          type: String
+      - name: location
+        dataType:
+          type: String
+      - name: issuer_type
+        dataType:
+          type: String
+    description: null
+    author: admin@prophecy.io
+    files:
+    - models/stock_availability.sql
+    - .prophecy/ide/models/stock_availability.json
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-11 15:08:06'
+sqlSnapshots: {}
+sqlTests: {}
+sqlMacros:
+  .prophecy/metadata/sqlmacros/generate_schema_name:
+    name: generate_schema_name
+    macroType: expression
+    description: null
+    author: admin@prophecy.io
+    files:
+    - macros/generate_schema_name.sql
+    - .prophecy/ide/macros/generate_schema_name.json
+    createdAt: '2025-04-11 14:58:13'
+sqlSeeds: {}
+sqlSources:
+  .prophecy/metadata/sqlsources/trading_raw:
+    name: trading.raw
+    description: ''
+    author: admin@prophecy.io
+    files:
+    - prophecy-sources/sources.
+    createdAt: '2025-04-11 15:06:21'
+    tables:
+    - name: trade_file_1
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: deal_id
+          dataType:
+            type: Integer
+        - name: security_id
+          dataType:
+            type: Integer
+        - name: currency
+          dataType:
+            type: String
+        - name: portfolio_name
+          dataType:
+            type: String
+        - name: location
+          dataType:
+            type: String
+        - name: counterparty_name
+          dataType:
+            type: String
+        - name: face_value
+          dataType:
+            type: Integer
+        - name: trader_name
+          dataType:
+            type: String
+        - name: trade_date
+          dataType:
+            type: Integer
+        - name: settlement_date
+          dataType:
+            type: Integer
+        - name: maturity_date
+          dataType:
+            type: Integer
+        - name: buy_sell
+          dataType:
+            type: String
+        - name: trade_type
+          dataType:
+            type: String
+      description: null
+      author: admin@prophecy.io
+      tableType: null
+      createdAt: '2025-04-11 15:06:21'
+    - name: trade_file_2
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: deal_id
+          dataType:
+            type: Integer
+        - name: security_id
+          dataType:
+            type: Integer
+        - name: currency
+          dataType:
+            type: String
+        - name: portfolio_name
+          dataType:
+            type: String
+        - name: reval_date
+          dataType:
+            type: Date
+        - name: reval_value
+          dataType:
+            type: Integer
+      description: null
+      author: admin@prophecy.io
+      tableType: null
+      createdAt: '2025-04-11 15:06:21'
+    - name: securities_list
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: security_id
+          dataType:
+            type: String
+        - name: security_name
+          dataType:
+            type: String
+        - name: currency
+          dataType:
+            type: String
+        - name: start_date
+          dataType:
+            type: String
+        - name: maturity_date
+          dataType:
+            type: String
+        - name: issuer_type
+          dataType:
+            type: String
+      description: null
+      author: admin@prophecy.io
+      tableType: null
+      createdAt: '2025-04-11 15:06:21'
+    - name: portfolio_to_gl
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: portfolio_name
+          dataType:
+            type: String
+        - name: location
+          dataType:
+            type: String
+        - name: GL_Level_1
+          dataType:
+            type: String
+        - name: GL_Level_2
+          dataType:
+            type: String
+        - name: GL_Level_3
+          dataType:
+            type: String
+      description: null
+      author: admin@prophecy.io
+      tableType: null
+      createdAt: '2025-04-11 15:06:21'
+    - name: exchange_rate_table
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: Currency_1
+          dataType:
+            type: String
+        - name: Currency_2
+          dataType:
+            type: String
+        - name: Conversion_Rate
+          dataType:
+            type: Double
+        - name: Conversion_Rule
+          dataType:
+            type: String
+      description: null
+      author: admin@prophecy.io
+      tableType: null
+      createdAt: '2025-04-11 15:06:21'
+sqlUnreferencedSources: {}
+sqlOrchestratorPipelines: {}
+sqlBusinessApps: {}
+sqlPipeline:
+  name: sqlPipeline
+  description: null
+  author: admin@prophecy.io
+  createdAt: '2025-04-11 14:58:12'
+dependencies: []
+projectDependencies:
+  '172':
+    projectUID: 172
+    projectName: ProphecyDatabricksSqlBasics
+    repositoryPath: gitUri=https://github.com/prophecy-io/databricks-sql-basics&subPath=
+    version: 0.0.1
+    isDefault: true
+    author: null
+    createdAt: '2025-04-11 14:53:10'
+flags:
+  shouldAddDefaultDependenciesIfAbsent: false
+pipelineConfigurations: {}

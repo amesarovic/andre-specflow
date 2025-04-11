@@ -1,0 +1,523 @@
+{
+  "id" : "stock_availability",
+  "metainfo" : {
+    "label" : "stock_availability",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "userDefinedConfig" : {
+        "vars" : { }
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "valid_trades##jqbyySLL" : {
+      "id" : "valid_trades##jqbyySLL",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "valid_trades",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "condition" : {
+          "expression" : "NOT asset IS NULL"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "dvbuCQPT",
+          "slug" : "filtered_trades"
+        } ],
+        "outputs" : [ {
+          "id" : "HUd08fTB",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 4
+    },
+    "final##fiIV1Cwq" : {
+      "id" : "final##fiIV1Cwq",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "stock_availability",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT *\n\nFROM final_cte\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "qMXVXj8v",
+          "slug" : "final_cte"
+        } ],
+        "outputs" : [ {
+          "id" : "q0SE2bOB",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 8
+    },
+    "gl_enriched_trad##WZKyCeNx" : {
+      "id" : "gl_enriched_trad##WZKyCeNx",
+      "component" : "Join",
+      "metadata" : {
+        "label" : "gl_enriched_trades",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "conditions" : [ {
+          "alias" : "ptg",
+          "expression" : {
+            "expression" : "gt.gl_level_1 = ptg.GL_Level_1 AND gt.location = ptg.location"
+          },
+          "joinType" : "LEFT"
+        } ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "gt.*"
+          },
+          "_row_id" : "1469897108"
+        }, {
+          "expression" : {
+            "expression" : "COALESCE(ptg.GL_Level_1, 'Bank001')"
+          },
+          "alias" : "gl_level_1_coalesced",
+          "_row_id" : "1375739352"
+        } ],
+        "activeTab" : "conditions",
+        "columnsSelector" : [ ],
+        "headAlias" : "gt"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "Hh4fQ7Ce",
+          "slug" : "gt"
+        }, {
+          "id" : "Ua2eLZv6",
+          "slug" : "ptg"
+        } ],
+        "outputs" : [ {
+          "id" : "bx2lPQhR",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 6
+    },
+    "active_governmen##zhHrFcAz" : {
+      "id" : "active_governmen##zhHrFcAz",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "active_government_bonds",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "condition" : {
+          "expression" : "LOWER(issuer_type) IN ('gov', 'semi gov')\nAND maturity_date >= CURRENT_DATE\nAND LOWER(counterparty_name) LIKE '%ext%'"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "gGaegXSa",
+          "slug" : "enriched_trade_file_1_cte_1"
+        } ],
+        "outputs" : [ {
+          "id" : "j4xxYzjC",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 2
+    },
+    "portfolio_to_gl_##NYi5dVHg" : {
+      "id" : "portfolio_to_gl_##NYi5dVHg",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "portfolio_to_gl_cte",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "portfolio_to_gl",
+          "sourceType" : "Source",
+          "sourceName" : "trading.raw"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "IhHAmc1U",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 1
+    },
+    "filtered_trades##Snw6HZj4" : {
+      "id" : "filtered_trades##Snw6HZj4",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "filtered_trades",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "deal_id"
+          },
+          "_row_id" : "1766993332"
+        }, {
+          "expression" : {
+            "expression" : "security_id"
+          },
+          "_row_id" : "1358800076"
+        }, {
+          "expression" : {
+            "expression" : "currency"
+          },
+          "_row_id" : "1611081669"
+        }, {
+          "expression" : {
+            "expression" : "portfolio_name"
+          },
+          "_row_id" : "133140416"
+        }, {
+          "expression" : {
+            "expression" : "location"
+          },
+          "_row_id" : "1062307165"
+        }, {
+          "expression" : {
+            "expression" : "counterparty_name"
+          },
+          "_row_id" : "1419257940"
+        }, {
+          "expression" : {
+            "expression" : "face_value"
+          },
+          "_row_id" : "749786841"
+        }, {
+          "expression" : {
+            "expression" : "trader_name"
+          },
+          "_row_id" : "1948375638"
+        }, {
+          "expression" : {
+            "expression" : "trade_date"
+          },
+          "_row_id" : "1045312054"
+        }, {
+          "expression" : {
+            "expression" : "settlement_date"
+          },
+          "_row_id" : "1012141867"
+        }, {
+          "expression" : {
+            "expression" : "maturity_date"
+          },
+          "_row_id" : "8010350"
+        }, {
+          "expression" : {
+            "expression" : "buy_sell"
+          },
+          "_row_id" : "1277916451"
+        }, {
+          "expression" : {
+            "expression" : "trade_type"
+          },
+          "_row_id" : "584278150"
+        }, {
+          "expression" : {
+            "expression" : "aud_revalue"
+          },
+          "_row_id" : "1113041401"
+        }, {
+          "expression" : {
+            "expression" : "gl_level_1"
+          },
+          "_row_id" : "1123684695"
+        }, {
+          "expression" : {
+            "expression" : "CASE\n  WHEN trade_type = 'BOND' AND buy_sell = 'b'\n    THEN 'Long Stock'\n  WHEN trade_type = 'REPO' AND buy_sell = 's'\n    THEN 'Reverse Repo'\nEND"
+          },
+          "alias" : "asset",
+          "_row_id" : "768174383"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "uL0XL2yw",
+          "slug" : "active_government_bonds"
+        } ],
+        "outputs" : [ {
+          "id" : "qyydk5ef",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 3
+    },
+    "grouped_trades##wazgeTGg" : {
+      "id" : "grouped_trades##wazgeTGg",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "grouped_trades",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "aggregate" : [ {
+          "expression" : {
+            "expression" : "location"
+          },
+          "_row_id" : "1695517236"
+        }, {
+          "expression" : {
+            "expression" : "gl_level_1"
+          },
+          "_row_id" : "2063654953"
+        }, {
+          "expression" : {
+            "expression" : "security_id"
+          },
+          "alias" : "security_name",
+          "_row_id" : "1209478325"
+        }, {
+          "expression" : {
+            "expression" : "maturity_date"
+          },
+          "_row_id" : "389696175"
+        }, {
+          "expression" : {
+            "expression" : "asset"
+          },
+          "_row_id" : "1148113203"
+        }, {
+          "expression" : {
+            "expression" : "SUM(aud_revalue)"
+          },
+          "alias" : "total_aud_long_position_available",
+          "_row_id" : "1832383147"
+        } ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ ],
+        "groupBy" : [ {
+          "expression" : {
+            "expression" : "location"
+          },
+          "_row_id" : "108006210"
+        }, {
+          "expression" : {
+            "expression" : "gl_level_1"
+          },
+          "_row_id" : "799473956"
+        }, {
+          "expression" : {
+            "expression" : "security_id"
+          },
+          "_row_id" : "1415262340"
+        }, {
+          "expression" : {
+            "expression" : "maturity_date"
+          },
+          "_row_id" : "1588696130"
+        }, {
+          "expression" : {
+            "expression" : "asset"
+          },
+          "_row_id" : "1101323666"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "Uxa7QsVj",
+          "slug" : "valid_trades"
+        } ],
+        "outputs" : [ {
+          "id" : "YzQVsnzm",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 5
+    },
+    "enriched_trade_f##tOp8vd3X" : {
+      "id" : "enriched_trade_f##tOp8vd3X",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "enriched_trade_file_1_cte_1",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "enriched_trade_file_1",
+          "sourceType" : "Model"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "j6eskyUO",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 0
+    },
+    "final_cte##k2Dfx5gy" : {
+      "id" : "final_cte##k2Dfx5gy",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "final_cte",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "total_aud_long_position_available"
+          },
+          "_row_id" : "1225570603"
+        }, {
+          "expression" : {
+            "expression" : "asset"
+          },
+          "_row_id" : "1995811317"
+        }, {
+          "expression" : {
+            "expression" : "security_name"
+          },
+          "_row_id" : "1103999943"
+        }, {
+          "expression" : {
+            "expression" : "maturity_date"
+          },
+          "_row_id" : "806191138"
+        }, {
+          "expression" : {
+            "expression" : "gl_level_1_coalesced"
+          },
+          "alias" : "gl_level_1",
+          "_row_id" : "1353169603"
+        }, {
+          "expression" : {
+            "expression" : "location"
+          },
+          "_row_id" : "266810180"
+        }, {
+          "expression" : {
+            "expression" : "'Gov'"
+          },
+          "alias" : "issuer_type",
+          "_row_id" : "289007236"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "en73lSfq",
+          "slug" : "gl_enriched_trades"
+        } ],
+        "outputs" : [ {
+          "id" : "LgpuOrUY",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 7
+    }
+  },
+  "connections" : [ {
+    "id" : "H0SM9uV8",
+    "source" : "enriched_trade_f##tOp8vd3X",
+    "sourcePort" : "j6eskyUO",
+    "target" : "active_governmen##zhHrFcAz",
+    "targetPort" : "gGaegXSa"
+  }, {
+    "id" : "GVpK9p16",
+    "source" : "active_governmen##zhHrFcAz",
+    "sourcePort" : "j4xxYzjC",
+    "target" : "filtered_trades##Snw6HZj4",
+    "targetPort" : "uL0XL2yw"
+  }, {
+    "id" : "Rk2iLgPi",
+    "source" : "filtered_trades##Snw6HZj4",
+    "sourcePort" : "qyydk5ef",
+    "target" : "valid_trades##jqbyySLL",
+    "targetPort" : "dvbuCQPT"
+  }, {
+    "id" : "gDfX7vzx",
+    "source" : "valid_trades##jqbyySLL",
+    "sourcePort" : "HUd08fTB",
+    "target" : "grouped_trades##wazgeTGg",
+    "targetPort" : "Uxa7QsVj"
+  }, {
+    "id" : "fy81fQ8k",
+    "source" : "grouped_trades##wazgeTGg",
+    "sourcePort" : "YzQVsnzm",
+    "target" : "gl_enriched_trad##WZKyCeNx",
+    "targetPort" : "Hh4fQ7Ce"
+  }, {
+    "id" : "HWSUGqVf",
+    "source" : "portfolio_to_gl_##NYi5dVHg",
+    "sourcePort" : "IhHAmc1U",
+    "target" : "gl_enriched_trad##WZKyCeNx",
+    "targetPort" : "Ua2eLZv6"
+  }, {
+    "id" : "b0M4R5lo",
+    "source" : "gl_enriched_trad##WZKyCeNx",
+    "sourcePort" : "bx2lPQhR",
+    "target" : "final_cte##k2Dfx5gy",
+    "targetPort" : "en73lSfq"
+  }, {
+    "id" : "oN9djsQW",
+    "source" : "final_cte##k2Dfx5gy",
+    "sourcePort" : "LgpuOrUY",
+    "target" : "final##fiIV1Cwq",
+    "targetPort" : "qMXVXj8v"
+  } ],
+  "component" : "Model"
+}

@@ -1,0 +1,800 @@
+{
+  "id" : "enriched_trade_file_1",
+  "metainfo" : {
+    "label" : "enriched_trade_file_1",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "userDefinedConfig" : {
+        "vars" : { }
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "securities_list_##zxokyXnE" : {
+      "id" : "securities_list_##zxokyXnE",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "securities_list_cte",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "securities_list",
+          "sourceType" : "Source",
+          "sourceName" : "trading.raw"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "PRYwySmM",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 3
+    },
+    "aud_converted_tr##hKarDPmj" : {
+      "id" : "aud_converted_tr##hKarDPmj",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "aud_converted_trades",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "out",
+          "id" : "out",
+          "language" : "sql",
+          "content" : "SELECT \n  deal_id,\n  security_id,\n  currency,\n  portfolio_name,\n  location,\n  counterparty_name,\n  face_value,\n  trader_name,\n  trade_date,\n  settlement_date,\n  maturity_date,\n  buy_sell,\n  trade_type,\n  reval_date,\n  reval_value,\n  security_name,\n  issuer_type,\n  coupon_rate,\n  gl_level_1,\n  gl_level_2,\n  gl_level_3,\n  exclude_flag,\n  CASE\n    WHEN currency <> 'AUD'\n      THEN reval_value\n      * (\n          SELECT Conversion_Rate\n          \n          FROM exchange_rate_table_cte\n          \n          WHERE Currency_1 = currency AND Currency_2 = 'AUD'\n         )\n    ELSE reval_value\n  END AS aud_revalue\n\nFROM exclude_flagged_trades\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "VVJtj6vJ",
+          "slug" : "exchange_rate_table_cte"
+        }, {
+          "id" : "NCKvcG4A",
+          "slug" : "exclude_flagged_trades"
+        } ],
+        "outputs" : [ {
+          "id" : "BoASyHyV",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 10
+    },
+    "trade_file_1_cte##Ts1vD3Wl" : {
+      "id" : "trade_file_1_cte##Ts1vD3Wl",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "trade_file_1_cte_1",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "trade_file_1",
+          "sourceType" : "Source",
+          "sourceName" : "trading.raw"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "bgBhrWTb",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 1
+    },
+    "enriched_trades##dubIIQbI" : {
+      "id" : "enriched_trades##dubIIQbI",
+      "component" : "Join",
+      "metadata" : {
+        "label" : "enriched_trades",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "conditions" : [ {
+          "alias" : "lr",
+          "expression" : {
+            "expression" : "tf1.deal_id = lr.deal_id\nAND tf1.security_id = lr.security_id\nAND tf1.currency = lr.currency\nAND tf1.portfolio_name = lr.portfolio_name"
+          },
+          "joinType" : ""
+        }, {
+          "alias" : "sl",
+          "expression" : {
+            "expression" : "tf1.security_id = sl.security_id"
+          },
+          "joinType" : "LEFT"
+        } ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "tf1.deal_id"
+          },
+          "_row_id" : "113135929"
+        }, {
+          "expression" : {
+            "expression" : "tf1.security_id"
+          },
+          "_row_id" : "1989858648"
+        }, {
+          "expression" : {
+            "expression" : "tf1.currency"
+          },
+          "_row_id" : "1444691297"
+        }, {
+          "expression" : {
+            "expression" : "tf1.portfolio_name"
+          },
+          "_row_id" : "506618513"
+        }, {
+          "expression" : {
+            "expression" : "tf1.location"
+          },
+          "_row_id" : "882625425"
+        }, {
+          "expression" : {
+            "expression" : "tf1.counterparty_name"
+          },
+          "_row_id" : "1152480347"
+        }, {
+          "expression" : {
+            "expression" : "tf1.face_value"
+          },
+          "_row_id" : "411498876"
+        }, {
+          "expression" : {
+            "expression" : "tf1.trader_name"
+          },
+          "_row_id" : "297382439"
+        }, {
+          "expression" : {
+            "expression" : "tf1.trade_date"
+          },
+          "_row_id" : "1364113542"
+        }, {
+          "expression" : {
+            "expression" : "tf1.settlement_date"
+          },
+          "_row_id" : "1015379308"
+        }, {
+          "expression" : {
+            "expression" : "COALESCE(tf1.maturity_date, sl.maturity_date)"
+          },
+          "alias" : "maturity_date",
+          "_row_id" : "453829653"
+        }, {
+          "expression" : {
+            "expression" : "tf1.buy_sell"
+          },
+          "_row_id" : "1601174556"
+        }, {
+          "expression" : {
+            "expression" : "tf1.trade_type"
+          },
+          "_row_id" : "103900534"
+        }, {
+          "expression" : {
+            "expression" : "lr.reval_date"
+          },
+          "_row_id" : "243065073"
+        }, {
+          "expression" : {
+            "expression" : "lr.reval_value"
+          },
+          "_row_id" : "595899041"
+        }, {
+          "expression" : {
+            "expression" : "sl.security_name"
+          },
+          "_row_id" : "2058383729"
+        }, {
+          "expression" : {
+            "expression" : "sl.issuer_type"
+          },
+          "_row_id" : "967952182"
+        }, {
+          "expression" : {
+            "expression" : "CASE\n  WHEN tf1.trade_type IN ('BOND', 'REPO')\n    THEN CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(sl.security_name, ' ', -1), '%', 1) AS DECIMAL (5, 2))\n  ELSE NULL\nEND"
+          },
+          "alias" : "coupon_rate",
+          "_row_id" : "575600341"
+        } ],
+        "activeTab" : "conditions",
+        "columnsSelector" : [ ],
+        "headAlias" : "tf1"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "SVbRoUA1",
+          "slug" : "tf1"
+        }, {
+          "id" : "Mo0wnJIc",
+          "slug" : "lr"
+        }, {
+          "id" : "GBRUwhCy",
+          "slug" : "sl"
+        } ],
+        "outputs" : [ {
+          "id" : "vj9OdROj",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 7
+    },
+    "final##IEjFdiSl" : {
+      "id" : "final##IEjFdiSl",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "enriched_trade_file_1",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT *\n\nFROM aud_converted_trades\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "xaOGQ0dg",
+          "slug" : "aud_converted_trades"
+        } ],
+        "outputs" : [ {
+          "id" : "pzYmvk0E",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 11
+    },
+    "exclude_flagged_##U98tT564" : {
+      "id" : "exclude_flagged_##U98tT564",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "exclude_flagged_trades",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "deal_id"
+          },
+          "_row_id" : "1389804962"
+        }, {
+          "expression" : {
+            "expression" : "security_id"
+          },
+          "_row_id" : "429141797"
+        }, {
+          "expression" : {
+            "expression" : "currency"
+          },
+          "_row_id" : "116129860"
+        }, {
+          "expression" : {
+            "expression" : "portfolio_name"
+          },
+          "_row_id" : "542115421"
+        }, {
+          "expression" : {
+            "expression" : "location"
+          },
+          "_row_id" : "1080554738"
+        }, {
+          "expression" : {
+            "expression" : "counterparty_name"
+          },
+          "_row_id" : "1260440156"
+        }, {
+          "expression" : {
+            "expression" : "face_value"
+          },
+          "_row_id" : "899062823"
+        }, {
+          "expression" : {
+            "expression" : "trader_name"
+          },
+          "_row_id" : "605888741"
+        }, {
+          "expression" : {
+            "expression" : "trade_date"
+          },
+          "_row_id" : "1565234049"
+        }, {
+          "expression" : {
+            "expression" : "settlement_date"
+          },
+          "_row_id" : "236085411"
+        }, {
+          "expression" : {
+            "expression" : "maturity_date"
+          },
+          "_row_id" : "1249511627"
+        }, {
+          "expression" : {
+            "expression" : "buy_sell"
+          },
+          "_row_id" : "697277591"
+        }, {
+          "expression" : {
+            "expression" : "trade_type"
+          },
+          "_row_id" : "2059082281"
+        }, {
+          "expression" : {
+            "expression" : "reval_date"
+          },
+          "_row_id" : "205056148"
+        }, {
+          "expression" : {
+            "expression" : "reval_value"
+          },
+          "_row_id" : "1315970335"
+        }, {
+          "expression" : {
+            "expression" : "security_name"
+          },
+          "_row_id" : "674056922"
+        }, {
+          "expression" : {
+            "expression" : "issuer_type"
+          },
+          "_row_id" : "705345804"
+        }, {
+          "expression" : {
+            "expression" : "coupon_rate"
+          },
+          "_row_id" : "1392381256"
+        }, {
+          "expression" : {
+            "expression" : "gl_level_1"
+          },
+          "_row_id" : "134286354"
+        }, {
+          "expression" : {
+            "expression" : "gl_level_2"
+          },
+          "_row_id" : "1395017567"
+        }, {
+          "expression" : {
+            "expression" : "gl_level_3"
+          },
+          "_row_id" : "1832263550"
+        }, {
+          "expression" : {
+            "expression" : "CASE\n  WHEN trade_type = 'LOAN'\n    THEN 'Y'\n  ELSE 'N'\nEND"
+          },
+          "alias" : "exclude_flag",
+          "_row_id" : "12208015"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "WdsrubCb",
+          "slug" : "gl_enriched_trades"
+        } ],
+        "outputs" : [ {
+          "id" : "e00GhqRR",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 9
+    },
+    "top_ranked_reval##yFXwYRB7" : {
+      "id" : "top_ranked_reval##yFXwYRB7",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "top_ranked_revals",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "condition" : {
+          "expression" : "rn = 1"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "NorGzyfQ",
+          "slug" : "ranked_revals"
+        } ],
+        "outputs" : [ {
+          "id" : "LH3GvX8R",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 6
+    },
+    "exchange_rate_ta##q7UTMrLj" : {
+      "id" : "exchange_rate_ta##q7UTMrLj",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "exchange_rate_table_cte",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "exchange_rate_table",
+          "sourceType" : "Source",
+          "sourceName" : "trading.raw"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "f0OXjmrV",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 0
+    },
+    "gl_enriched_trad##KlsVxOyb" : {
+      "id" : "gl_enriched_trad##KlsVxOyb",
+      "component" : "Join",
+      "metadata" : {
+        "label" : "gl_enriched_trades",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "conditions" : [ {
+          "alias" : "pg",
+          "expression" : {
+            "expression" : "et.portfolio_name = pg.portfolio_name"
+          },
+          "joinType" : "LEFT"
+        } ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "et.deal_id"
+          },
+          "_row_id" : "800375617"
+        }, {
+          "expression" : {
+            "expression" : "et.security_id"
+          },
+          "_row_id" : "306304506"
+        }, {
+          "expression" : {
+            "expression" : "et.currency"
+          },
+          "_row_id" : "1627223654"
+        }, {
+          "expression" : {
+            "expression" : "et.portfolio_name"
+          },
+          "_row_id" : "846422371"
+        }, {
+          "expression" : {
+            "expression" : "et.location"
+          },
+          "_row_id" : "972650275"
+        }, {
+          "expression" : {
+            "expression" : "et.counterparty_name"
+          },
+          "_row_id" : "1243987956"
+        }, {
+          "expression" : {
+            "expression" : "et.face_value"
+          },
+          "_row_id" : "1123350058"
+        }, {
+          "expression" : {
+            "expression" : "et.trader_name"
+          },
+          "_row_id" : "793916140"
+        }, {
+          "expression" : {
+            "expression" : "et.trade_date"
+          },
+          "_row_id" : "177800871"
+        }, {
+          "expression" : {
+            "expression" : "et.settlement_date"
+          },
+          "_row_id" : "1629780639"
+        }, {
+          "expression" : {
+            "expression" : "et.maturity_date"
+          },
+          "_row_id" : "1807998210"
+        }, {
+          "expression" : {
+            "expression" : "et.buy_sell"
+          },
+          "_row_id" : "1513802966"
+        }, {
+          "expression" : {
+            "expression" : "et.trade_type"
+          },
+          "_row_id" : "772220614"
+        }, {
+          "expression" : {
+            "expression" : "et.reval_date"
+          },
+          "_row_id" : "796277754"
+        }, {
+          "expression" : {
+            "expression" : "et.reval_value"
+          },
+          "_row_id" : "979000012"
+        }, {
+          "expression" : {
+            "expression" : "et.security_name"
+          },
+          "_row_id" : "1106423583"
+        }, {
+          "expression" : {
+            "expression" : "et.issuer_type"
+          },
+          "_row_id" : "1875801697"
+        }, {
+          "expression" : {
+            "expression" : "et.coupon_rate"
+          },
+          "_row_id" : "896745607"
+        }, {
+          "expression" : {
+            "expression" : "COALESCE(pg.GL_Level_1, 'Bank001')"
+          },
+          "alias" : "gl_level_1",
+          "_row_id" : "1820872561"
+        }, {
+          "expression" : {
+            "expression" : "COALESCE(pg.GL_Level_2, 'Branch001')"
+          },
+          "alias" : "gl_level_2",
+          "_row_id" : "1124741853"
+        }, {
+          "expression" : {
+            "expression" : "COALESCE(pg.GL_Level_3, 'Desk001')"
+          },
+          "alias" : "gl_level_3",
+          "_row_id" : "1066964354"
+        } ],
+        "activeTab" : "conditions",
+        "columnsSelector" : [ ],
+        "headAlias" : "et"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "MLKBjUHQ",
+          "slug" : "et"
+        }, {
+          "id" : "noTpfeuq",
+          "slug" : "pg"
+        } ],
+        "outputs" : [ {
+          "id" : "SACHc78V",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 8
+    },
+    "ranked_revals##k5l1D9qk" : {
+      "id" : "ranked_revals##k5l1D9qk",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "ranked_revals",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "deal_id"
+          },
+          "_row_id" : "2099316335"
+        }, {
+          "expression" : {
+            "expression" : "security_id"
+          },
+          "_row_id" : "1583307444"
+        }, {
+          "expression" : {
+            "expression" : "currency"
+          },
+          "_row_id" : "1635832527"
+        }, {
+          "expression" : {
+            "expression" : "portfolio_name"
+          },
+          "_row_id" : "903329621"
+        }, {
+          "expression" : {
+            "expression" : "reval_date"
+          },
+          "_row_id" : "1932492620"
+        }, {
+          "expression" : {
+            "expression" : "reval_value"
+          },
+          "_row_id" : "1744613420"
+        }, {
+          "expression" : {
+            "expression" : "ROW_NUMBER() OVER (PARTITION BY deal_id ORDER BY reval_date DESC)"
+          },
+          "alias" : "rn",
+          "_row_id" : "1779538426"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "yDKzWTNy",
+          "slug" : "trade_file_2_cte_1"
+        } ],
+        "outputs" : [ {
+          "id" : "SEtfH8h1",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 5
+    },
+    "trade_file_2_cte##vcOG2ekj" : {
+      "id" : "trade_file_2_cte##vcOG2ekj",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "trade_file_2_cte_1",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "trade_file_2",
+          "sourceType" : "Source",
+          "sourceName" : "trading.raw"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "lF7ArDU2",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 2
+    },
+    "portfolio_to_gl_##LNdcYZku" : {
+      "id" : "portfolio_to_gl_##LNdcYZku",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "portfolio_to_gl_cte",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "portfolio_to_gl",
+          "sourceType" : "Source",
+          "sourceName" : "trading.raw"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "SGaTogTi",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 4
+    }
+  },
+  "connections" : [ {
+    "id" : "M4908EXW",
+    "source" : "trade_file_2_cte##vcOG2ekj",
+    "sourcePort" : "lF7ArDU2",
+    "target" : "ranked_revals##k5l1D9qk",
+    "targetPort" : "yDKzWTNy"
+  }, {
+    "id" : "RTpFY2bg",
+    "source" : "ranked_revals##k5l1D9qk",
+    "sourcePort" : "SEtfH8h1",
+    "target" : "top_ranked_reval##yFXwYRB7",
+    "targetPort" : "NorGzyfQ"
+  }, {
+    "id" : "ac9Pf0vo",
+    "source" : "trade_file_1_cte##Ts1vD3Wl",
+    "sourcePort" : "bgBhrWTb",
+    "target" : "enriched_trades##dubIIQbI",
+    "targetPort" : "SVbRoUA1"
+  }, {
+    "id" : "xi6Y18Cz",
+    "source" : "top_ranked_reval##yFXwYRB7",
+    "sourcePort" : "LH3GvX8R",
+    "target" : "enriched_trades##dubIIQbI",
+    "targetPort" : "Mo0wnJIc"
+  }, {
+    "id" : "LkD39I4K",
+    "source" : "securities_list_##zxokyXnE",
+    "sourcePort" : "PRYwySmM",
+    "target" : "enriched_trades##dubIIQbI",
+    "targetPort" : "GBRUwhCy"
+  }, {
+    "id" : "dpU7idbZ",
+    "source" : "enriched_trades##dubIIQbI",
+    "sourcePort" : "vj9OdROj",
+    "target" : "gl_enriched_trad##KlsVxOyb",
+    "targetPort" : "MLKBjUHQ"
+  }, {
+    "id" : "znTMzp9T",
+    "source" : "portfolio_to_gl_##LNdcYZku",
+    "sourcePort" : "SGaTogTi",
+    "target" : "gl_enriched_trad##KlsVxOyb",
+    "targetPort" : "noTpfeuq"
+  }, {
+    "id" : "LYxbtKjc",
+    "source" : "gl_enriched_trad##KlsVxOyb",
+    "sourcePort" : "SACHc78V",
+    "target" : "exclude_flagged_##U98tT564",
+    "targetPort" : "WdsrubCb"
+  }, {
+    "id" : "JuRbdYi5",
+    "source" : "exchange_rate_ta##q7UTMrLj",
+    "sourcePort" : "f0OXjmrV",
+    "target" : "aud_converted_tr##hKarDPmj",
+    "targetPort" : "VVJtj6vJ"
+  }, {
+    "id" : "gXZUFCGM",
+    "source" : "exclude_flagged_##U98tT564",
+    "sourcePort" : "e00GhqRR",
+    "target" : "aud_converted_tr##hKarDPmj",
+    "targetPort" : "NCKvcG4A"
+  }, {
+    "id" : "UWrUHNEE",
+    "source" : "aud_converted_tr##hKarDPmj",
+    "sourcePort" : "BoASyHyV",
+    "target" : "final##IEjFdiSl",
+    "targetPort" : "xaOGQ0dg"
+  } ],
+  "component" : "Model"
+}
