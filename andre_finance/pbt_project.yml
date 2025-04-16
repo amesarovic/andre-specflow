@@ -1,0 +1,456 @@
+name: andre_finance
+description: ''
+version: 0.0.1
+author: admin@prophecy.io
+language: sql
+buildSystem: ''
+buildSystemDetails: null
+pipelines: {}
+datasets: {}
+templates: {}
+jobs: {}
+gemContainer:
+  languageVersion: ''
+  gemLibsVersion: ''
+  gems: {}
+  dependencies: null
+functions:
+  author: null
+  createdAt: '2025-04-16 17:06:32'
+  udfs: {}
+  udafs: {}
+  expressions: {}
+  airflowFunctions: {}
+  businessRules: {}
+subgraphs: {}
+sqlModels:
+  .prophecy/metadata/sqlmodels/portfolio_risk_analysis:
+    name: portfolio_risk_analysis
+    schema: null
+    description: null
+    author: admin@prophecy.io
+    files:
+    - models/portfolio_risk_analysis.sql
+    - .prophecy/ide/models/portfolio_risk_analysis.json
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-16 17:11:25'
+  .prophecy/metadata/sqlmodels/trade_profitability_summary:
+    name: trade_profitability_summary
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: transaction_id
+        dataType:
+          type: Integer
+      - name: trade_date
+        dataType:
+          type: Integer
+      - name: security_ticker
+        dataType:
+          type: String
+      - name: quantity
+        dataType:
+          type: Integer
+      - name: trade_price
+        dataType:
+          type: Decimal
+      - name: market_price
+        dataType:
+          type: Decimal
+      - name: broker_id
+        dataType:
+          type: String
+      - name: client_id
+        dataType:
+          type: String
+      - name: trade_status
+        dataType:
+          type: String
+      - name: profit_loss
+        dataType:
+          type: Decimal
+      - name: broker_performance
+        dataType:
+          type: Decimal
+      - name: client_profitability
+        dataType:
+          type: Decimal
+      - name: derived_logic_summary
+        dataType:
+          type: String
+    description: null
+    author: admin@prophecy.io
+    files:
+    - models/trade_profitability_summary.sql
+    - .prophecy/ide/models/trade_profitability_summary.json
+    - models/schema.yml
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-16 17:11:25'
+sqlSnapshots: {}
+sqlTests: {}
+sqlMacros:
+  .prophecy/metadata/sqlmacros/generate_schema_name:
+    name: generate_schema_name
+    macroType: expression
+    description: null
+    author: admin@prophecy.io
+    files:
+    - macros/generate_schema_name.sql
+    - .prophecy/ide/macros/generate_schema_name.json
+    createdAt: '2025-04-16 17:06:36'
+sqlSeeds: {}
+sqlSources:
+  .prophecy/metadata/sqlsources/hive_metastore_default:
+    name: hive_metastore.default
+    description: ''
+    author: admin@prophecy.io
+    files:
+    - prophecy-sources/sources.yml
+    createdAt: '2025-04-16 17:09:55'
+    tables:
+    - name: customer_amount
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: customer_id
+          dataType:
+            type: Bigint
+        - name: first_name
+          dataType:
+            type: String
+        - name: last_name
+          dataType:
+            type: String
+        - name: median_order_amount
+          dataType:
+            type: Decimal
+        - name: max_order_amount
+          dataType:
+            type: Decimal
+        - name: full_name
+          dataType:
+            type: String
+      description: null
+      author: admin@prophecy.io
+      tableType: null
+      createdAt: '2025-04-16 17:09:55'
+  .prophecy/metadata/sqlsources/trading_default:
+    name: trading.default
+    description: ''
+    author: admin@prophecy.io
+    files:
+    - prophecy-sources/sources.yml
+    createdAt: '2025-04-16 17:09:55'
+    tables:
+    - name: bronze_extractandinitialenrichments
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: deal_id
+          dataType:
+            type: Integer
+        - name: SECURITY_ID
+          dataType:
+            type: Integer
+        - name: CURRENCY
+          dataType:
+            type: String
+        - name: PORTFOLIO_NAME
+          dataType:
+            type: String
+        - name: REVAL_DATE
+          dataType:
+            type: Date
+        - name: REVAL_VALUE
+          dataType:
+            type: Integer
+        - name: tf1_security_id
+          dataType:
+            type: Integer
+        - name: tf1_currency
+          dataType:
+            type: String
+        - name: tf1_portfolio_name
+          dataType:
+            type: String
+        - name: location
+          dataType:
+            type: String
+        - name: counterparty_name
+          dataType:
+            type: String
+        - name: face_value
+          dataType:
+            type: Integer
+        - name: trader_name
+          dataType:
+            type: String
+        - name: trade_date
+          dataType:
+            type: Integer
+        - name: settlement_date
+          dataType:
+            type: Integer
+        - name: maturity_date
+          dataType:
+            type: Integer
+        - name: buy_sell
+          dataType:
+            type: String
+        - name: trade_type
+          dataType:
+            type: String
+        - name: security_name
+          dataType:
+            type: String
+        - name: start_date
+          dataType:
+            type: String
+        - name: sl_maturity_date
+          dataType:
+            type: String
+        - name: issuer_type
+          dataType:
+            type: String
+        - name: GL_Level_1
+          dataType:
+            type: String
+        - name: GL_Level_2
+          dataType:
+            type: String
+        - name: GL_Level_3
+          dataType:
+            type: String
+      description: null
+      author: admin@prophecy.io
+      tableType: null
+      createdAt: '2025-04-16 17:09:55'
+    - name: enriched_trade_file_1
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: deal_id
+          dataType:
+            type: Integer
+        - name: security_id
+          dataType:
+            type: Integer
+        - name: currency
+          dataType:
+            type: String
+        - name: portfolio_name
+          dataType:
+            type: String
+        - name: location
+          dataType:
+            type: String
+        - name: counterparty_name
+          dataType:
+            type: String
+        - name: face_value
+          dataType:
+            type: Integer
+        - name: trader_name
+          dataType:
+            type: String
+        - name: trade_date
+          dataType:
+            type: Integer
+        - name: settlement_date
+          dataType:
+            type: Integer
+        - name: maturity_date
+          dataType:
+            type: String
+        - name: buy_sell
+          dataType:
+            type: String
+        - name: trade_type
+          dataType:
+            type: String
+        - name: aud_revalue
+          dataType:
+            type: Decimal
+        - name: exclude_flag
+          dataType:
+            type: String
+        - name: coupon_rate
+          dataType:
+            type: Decimal
+        - name: gl_level_1
+          dataType:
+            type: String
+        - name: gl_level_2
+          dataType:
+            type: String
+        - name: gl_level_3
+          dataType:
+            type: String
+        - name: security_name
+          dataType:
+            type: String
+        - name: issuer_type
+          dataType:
+            type: String
+      description: null
+      author: admin@prophecy.io
+      tableType: null
+      createdAt: '2025-04-16 17:09:55'
+    - name: silver_tagging
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: maturity_date
+          dataType:
+            type: Date
+        - name: start_date
+          dataType:
+            type: Date
+        - name: deal_id
+          dataType:
+            type: Integer
+        - name: SECURITY_ID
+          dataType:
+            type: Integer
+        - name: CURRENCY
+          dataType:
+            type: String
+        - name: PORTFOLIO_NAME
+          dataType:
+            type: String
+        - name: REVAL_DATE
+          dataType:
+            type: Date
+        - name: REVAL_VALUE
+          dataType:
+            type: Integer
+        - name: tf1_security_id
+          dataType:
+            type: Integer
+        - name: tf1_currency
+          dataType:
+            type: String
+        - name: tf1_portfolio_name
+          dataType:
+            type: String
+        - name: location
+          dataType:
+            type: String
+        - name: counterparty_name
+          dataType:
+            type: String
+        - name: face_value
+          dataType:
+            type: Integer
+        - name: trader_name
+          dataType:
+            type: String
+        - name: trade_date
+          dataType:
+            type: Integer
+        - name: settlement_date
+          dataType:
+            type: Integer
+        - name: string_maturity_date
+          dataType:
+            type: String
+        - name: buy_sell
+          dataType:
+            type: String
+        - name: trade_type
+          dataType:
+            type: String
+        - name: security_name
+          dataType:
+            type: String
+        - name: sl_maturity_date
+          dataType:
+            type: String
+        - name: issuer_type
+          dataType:
+            type: String
+        - name: GL_Level_1
+          dataType:
+            type: String
+        - name: GL_Level_2
+          dataType:
+            type: String
+        - name: GL_Level_3
+          dataType:
+            type: String
+        - name: Conversion_Rate
+          dataType:
+            type: Double
+        - name: Conversion_Rule
+          dataType:
+            type: String
+        - name: AUD_REVALUE
+          dataType:
+            type: Double
+      description: null
+      author: admin@prophecy.io
+      tableType: null
+      createdAt: '2025-04-16 17:09:55'
+  .prophecy/metadata/sqlsources/trading_raw:
+    name: trading.raw
+    description: ''
+    author: admin@prophecy.io
+    files:
+    - prophecy-sources/sources.yml
+    createdAt: '2025-04-16 17:09:55'
+    tables:
+    - name: stock_availability
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: location
+          dataType:
+            type: String
+        - name: gl_level_1
+          dataType:
+            type: String
+        - name: security_name
+          dataType:
+            type: String
+        - name: maturity_date
+          dataType:
+            type: String
+        - name: asset
+          dataType:
+            type: String
+        - name: total_aud_long_position_available
+          dataType:
+            type: Double
+      description: null
+      author: admin@prophecy.io
+      tableType: null
+      createdAt: '2025-04-16 17:09:55'
+sqlUnreferencedSources: {}
+sqlOrchestratorPipelines: {}
+sqlBusinessApps: {}
+sqlPipeline:
+  name: sqlPipeline
+  description: null
+  author: admin@prophecy.io
+  createdAt: '2025-04-16 17:06:32'
+dependencies: []
+projectDependencies: {}
+flags:
+  shouldAddDefaultDependenciesIfAbsent: false
+pipelineConfigurations: {}

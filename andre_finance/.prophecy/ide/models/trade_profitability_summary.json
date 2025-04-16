@@ -1,0 +1,616 @@
+{
+  "id" : "trade_profitability_summary",
+  "metainfo" : {
+    "label" : "trade_profitability_summary",
+    "autoLayout" : false,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "table",
+        "database" : "\"trading\"",
+        "schema" : "\"andre_out\"",
+        "type" : "ModelConfig"
+      },
+      "userDefinedConfig" : {
+        "vars" : { }
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "final_cte##DsFl9JHp" : {
+      "id" : "final_cte##DsFl9JHp",
+      "component" : "Join",
+      "metadata" : {
+        "label" : "final_cte",
+        "x" : 1080,
+        "y" : 180,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "conditions" : [ {
+          "alias" : "bp",
+          "expression" : {
+            "expression" : "pt.broker_id = bp.broker_id"
+          },
+          "joinType" : ""
+        }, {
+          "alias" : "cp",
+          "expression" : {
+            "expression" : "pt.client_id = cp.client_id"
+          },
+          "joinType" : ""
+        }, {
+          "alias" : "dls",
+          "expression" : {
+            "expression" : "pt.transaction_id = dls.transaction_id"
+          },
+          "joinType" : ""
+        } ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "pt.transaction_id"
+          },
+          "_row_id" : "1822805869"
+        }, {
+          "expression" : {
+            "expression" : "pt.trade_date"
+          },
+          "_row_id" : "486011280"
+        }, {
+          "expression" : {
+            "expression" : "pt.security_ticker"
+          },
+          "_row_id" : "1879611408"
+        }, {
+          "expression" : {
+            "expression" : "pt.quantity"
+          },
+          "_row_id" : "261457288"
+        }, {
+          "expression" : {
+            "expression" : "pt.trade_price"
+          },
+          "_row_id" : "38220204"
+        }, {
+          "expression" : {
+            "expression" : "pt.market_price"
+          },
+          "_row_id" : "1653593856"
+        }, {
+          "expression" : {
+            "expression" : "pt.broker_id"
+          },
+          "_row_id" : "1157914121"
+        }, {
+          "expression" : {
+            "expression" : "pt.client_id"
+          },
+          "_row_id" : "80860304"
+        }, {
+          "expression" : {
+            "expression" : "pt.trade_status"
+          },
+          "_row_id" : "2052939348"
+        }, {
+          "expression" : {
+            "expression" : "pt.profit_loss"
+          },
+          "_row_id" : "31319390"
+        }, {
+          "expression" : {
+            "expression" : "bp.broker_performance"
+          },
+          "_row_id" : "435097493"
+        }, {
+          "expression" : {
+            "expression" : "cp.client_profitability"
+          },
+          "_row_id" : "1942304822"
+        }, {
+          "expression" : {
+            "expression" : "dls.derived_logic_summary"
+          },
+          "_row_id" : "575627252"
+        } ],
+        "activeTab" : "conditions",
+        "columnsSelector" : [ ],
+        "headAlias" : "pt"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "EpsfLcsi",
+          "slug" : "pt"
+        }, {
+          "id" : "uauabU5f",
+          "slug" : "bp"
+        }, {
+          "id" : "DQkO3DnG",
+          "slug" : "cp"
+        }, {
+          "id" : "VahVwC6y",
+          "slug" : "dls"
+        } ],
+        "outputs" : [ {
+          "id" : "wocoTcSU",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 7
+    },
+    "broker_performan##iMihmiDY" : {
+      "id" : "broker_performan##iMihmiDY",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "broker_performance_aggregation",
+        "x" : 820,
+        "y" : 80,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "aggregate" : [ {
+          "expression" : {
+            "expression" : "broker_id"
+          },
+          "_row_id" : "1410446573"
+        }, {
+          "expression" : {
+            "expression" : "SUM(profit_loss)"
+          },
+          "alias" : "broker_performance",
+          "_row_id" : "435170006"
+        } ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ ],
+        "groupBy" : [ {
+          "expression" : {
+            "expression" : "broker_id"
+          },
+          "_row_id" : "180577647"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "hbvNEgzm",
+          "slug" : "profit_loss_calculation"
+        } ],
+        "outputs" : [ {
+          "id" : "qv8E9LYj",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 4
+    },
+    "enriched_trade_f##T2kVilg2" : {
+      "id" : "enriched_trade_f##T2kVilg2",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "enriched_trade_file_1_cte",
+        "x" : 20,
+        "y" : 180,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "enriched_trade_file_1",
+          "sourceType" : "Source",
+          "sourceName" : "trading.default"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "bEBbX4GA",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 0
+    },
+    "final##mgI1SG3p" : {
+      "id" : "final##mgI1SG3p",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "trade_profitability_summary",
+        "x" : 1280,
+        "y" : 180,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "comment" : "Summarizes the profitability of trades for comprehensive analysis.",
+        "autoUpdateComment" : true,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT * \n\nFROM final_cte\n",
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "xwDafzaj",
+          "slug" : "final_cte"
+        } ],
+        "outputs" : [ {
+          "id" : "RafXoJGP",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "trade_transactio##GSxgrBAs" : {
+      "id" : "trade_transactio##GSxgrBAs",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "trade_transactions",
+        "x" : 420,
+        "y" : 180,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "deal_id"
+          },
+          "alias" : "transaction_id",
+          "_row_id" : "178179869"
+        }, {
+          "expression" : {
+            "expression" : "trade_date"
+          },
+          "_row_id" : "1807652554"
+        }, {
+          "expression" : {
+            "expression" : "security_name"
+          },
+          "alias" : "security_ticker",
+          "_row_id" : "2110672710"
+        }, {
+          "expression" : {
+            "expression" : "face_value"
+          },
+          "alias" : "quantity",
+          "_row_id" : "974688070"
+        }, {
+          "expression" : {
+            "expression" : "aud_revalue"
+          },
+          "alias" : "trade_price",
+          "_row_id" : "704293234"
+        }, {
+          "expression" : {
+            "expression" : "aud_revalue * 1.05"
+          },
+          "alias" : "market_price",
+          "_row_id" : "62133096"
+        }, {
+          "expression" : {
+            "expression" : "trader_name"
+          },
+          "alias" : "broker_id",
+          "_row_id" : "2079542247"
+        }, {
+          "expression" : {
+            "expression" : "counterparty_name"
+          },
+          "alias" : "client_id",
+          "_row_id" : "659071786"
+        }, {
+          "expression" : {
+            "expression" : "'Completed'"
+          },
+          "alias" : "trade_status",
+          "_row_id" : "1608291741"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "RqCOUQ6f",
+          "slug" : "enriched_trade_records"
+        } ],
+        "outputs" : [ {
+          "id" : "RwW0arT3",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 2
+    },
+    "profit_loss_calc##RzwsK350" : {
+      "id" : "profit_loss_calc##RzwsK350",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "profit_loss_calculation",
+        "x" : 620,
+        "y" : 180,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "transaction_id"
+          },
+          "_row_id" : "1275048090"
+        }, {
+          "expression" : {
+            "expression" : "trade_date"
+          },
+          "_row_id" : "1052444952"
+        }, {
+          "expression" : {
+            "expression" : "security_ticker"
+          },
+          "_row_id" : "147330515"
+        }, {
+          "expression" : {
+            "expression" : "quantity"
+          },
+          "_row_id" : "1834117586"
+        }, {
+          "expression" : {
+            "expression" : "trade_price"
+          },
+          "_row_id" : "1100815571"
+        }, {
+          "expression" : {
+            "expression" : "market_price"
+          },
+          "_row_id" : "1899287267"
+        }, {
+          "expression" : {
+            "expression" : "broker_id"
+          },
+          "_row_id" : "203048565"
+        }, {
+          "expression" : {
+            "expression" : "client_id"
+          },
+          "_row_id" : "2073693096"
+        }, {
+          "expression" : {
+            "expression" : "trade_status"
+          },
+          "_row_id" : "1584991556"
+        }, {
+          "expression" : {
+            "expression" : "(market_price - trade_price) * quantity"
+          },
+          "alias" : "profit_loss",
+          "_row_id" : "1548645307"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "aJVmSbVD",
+          "slug" : "trade_transactions"
+        } ],
+        "outputs" : [ {
+          "id" : "s2pfshrk",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 3
+    },
+    "client_profitabi##niFct1GA" : {
+      "id" : "client_profitabi##niFct1GA",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "client_profitability_aggregation",
+        "x" : 820,
+        "y" : 280,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "aggregate" : [ {
+          "expression" : {
+            "expression" : "client_id"
+          },
+          "_row_id" : "330521395"
+        }, {
+          "expression" : {
+            "expression" : "SUM(profit_loss)"
+          },
+          "alias" : "client_profitability",
+          "_row_id" : "231883665"
+        } ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ ],
+        "groupBy" : [ {
+          "expression" : {
+            "expression" : "client_id"
+          },
+          "_row_id" : "1456345689"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "lxCUDy3n",
+          "slug" : "profit_loss_calculation"
+        } ],
+        "outputs" : [ {
+          "id" : "VIZMTK2D",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 5
+    },
+    "derived_logic_su##o61hhSUt" : {
+      "id" : "derived_logic_su##o61hhSUt",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "derived_logic_summary_cte",
+        "x" : 820,
+        "y" : 480,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "transaction_id"
+          },
+          "_row_id" : "181938550"
+        }, {
+          "expression" : {
+            "expression" : "'Profit/Loss calculated as (market_price - trade_price) * quantity. Liquidity impact and risk classification to be added.'"
+          },
+          "alias" : "derived_logic_summary",
+          "_row_id" : "1438594029"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "iGxcKZAy",
+          "slug" : "profit_loss_calculation"
+        } ],
+        "outputs" : [ {
+          "id" : "O0nZ3Ygq",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 6
+    },
+    "enriched_trade_r##BF9ziD7i" : {
+      "id" : "enriched_trade_r##BF9ziD7i",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "enriched_trade_records",
+        "x" : 220,
+        "y" : 180,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "condition" : {
+          "expression" : "exclude_flag = 'N'"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "mHmnEVFk",
+          "slug" : "enriched_trade_file_1_cte"
+        } ],
+        "outputs" : [ {
+          "id" : "ev3BGOSE",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 1
+    }
+  },
+  "connections" : [ {
+    "id" : "mkO0E8tC",
+    "source" : "enriched_trade_f##T2kVilg2",
+    "sourcePort" : "bEBbX4GA",
+    "target" : "enriched_trade_r##BF9ziD7i",
+    "targetPort" : "mHmnEVFk"
+  }, {
+    "id" : "cQGSBbs2",
+    "source" : "enriched_trade_r##BF9ziD7i",
+    "sourcePort" : "ev3BGOSE",
+    "target" : "trade_transactio##GSxgrBAs",
+    "targetPort" : "RqCOUQ6f"
+  }, {
+    "id" : "yixudi2t",
+    "source" : "trade_transactio##GSxgrBAs",
+    "sourcePort" : "RwW0arT3",
+    "target" : "profit_loss_calc##RzwsK350",
+    "targetPort" : "aJVmSbVD"
+  }, {
+    "id" : "NzDxdIZl",
+    "source" : "profit_loss_calc##RzwsK350",
+    "sourcePort" : "s2pfshrk",
+    "target" : "broker_performan##iMihmiDY",
+    "targetPort" : "hbvNEgzm"
+  }, {
+    "id" : "yVtsK943",
+    "source" : "profit_loss_calc##RzwsK350",
+    "sourcePort" : "s2pfshrk",
+    "target" : "client_profitabi##niFct1GA",
+    "targetPort" : "lxCUDy3n"
+  }, {
+    "id" : "Tzsty02O",
+    "source" : "profit_loss_calc##RzwsK350",
+    "sourcePort" : "s2pfshrk",
+    "target" : "derived_logic_su##o61hhSUt",
+    "targetPort" : "iGxcKZAy"
+  }, {
+    "id" : "DyLwKmhH",
+    "source" : "profit_loss_calc##RzwsK350",
+    "sourcePort" : "s2pfshrk",
+    "target" : "final_cte##DsFl9JHp",
+    "targetPort" : "EpsfLcsi"
+  }, {
+    "id" : "PTqjxPza",
+    "source" : "broker_performan##iMihmiDY",
+    "sourcePort" : "qv8E9LYj",
+    "target" : "final_cte##DsFl9JHp",
+    "targetPort" : "uauabU5f"
+  }, {
+    "id" : "IenbpB4p",
+    "source" : "client_profitabi##niFct1GA",
+    "sourcePort" : "VIZMTK2D",
+    "target" : "final_cte##DsFl9JHp",
+    "targetPort" : "DQkO3DnG"
+  }, {
+    "id" : "FnPaeIlR",
+    "source" : "derived_logic_su##o61hhSUt",
+    "sourcePort" : "O0nZ3Ygq",
+    "target" : "final_cte##DsFl9JHp",
+    "targetPort" : "VahVwC6y"
+  }, {
+    "id" : "x7PI6NZk",
+    "source" : "final_cte##DsFl9JHp",
+    "sourcePort" : "wocoTcSU",
+    "target" : "final##mgI1SG3p",
+    "targetPort" : "xwDafzaj"
+  } ],
+  "component" : "Model"
+}

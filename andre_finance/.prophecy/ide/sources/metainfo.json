@@ -1,0 +1,189 @@
+{
+  "name" : "andre_finance",
+  "fileSystem" : {
+    "type" : "Folder",
+    "name" : "",
+    "children" : { },
+    "path" : "",
+    "editable" : true
+  },
+  "providerType" : "databricks",
+  "prophecyIDEFolder" : {
+    "name" : "",
+    "children" : { },
+    "path" : "",
+    "editable" : true
+  },
+  "externalSources" : {
+    "type" : "Project",
+    "name" : "",
+    "children" : [ {
+      "type" : "Catalog",
+      "name" : "hive_metastore",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "kenpei",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "main",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "md_execution_metrics",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "optum",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "samples",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "snowbob_catalog",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "system",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "toyota",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "trading",
+      "children" : [ {
+        "type" : "Schema",
+        "name" : "adtech",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "andre",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "andre_out",
+        "tables" : {
+          "trade_profitability_summary" : {
+            "entityType" : "TABLE",
+            "providerType" : "Databricks",
+            "fields" : [ {
+              "name" : "transaction_id",
+              "dataType" : {
+                "type" : "Integer"
+              }
+            }, {
+              "name" : "trade_date",
+              "dataType" : {
+                "type" : "Integer"
+              }
+            }, {
+              "name" : "security_ticker",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "quantity",
+              "dataType" : {
+                "type" : "Integer"
+              }
+            }, {
+              "name" : "trade_price",
+              "dataType" : {
+                "type" : "Decimal"
+              }
+            }, {
+              "name" : "market_price",
+              "dataType" : {
+                "type" : "Decimal"
+              }
+            }, {
+              "name" : "broker_id",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "client_id",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "trade_status",
+              "dataType" : {
+                "type" : "String"
+              }
+            }, {
+              "name" : "profit_loss",
+              "dataType" : {
+                "type" : "Decimal"
+              }
+            }, {
+              "name" : "broker_performance",
+              "dataType" : {
+                "type" : "Decimal"
+              }
+            }, {
+              "name" : "client_profitability",
+              "dataType" : {
+                "type" : "Decimal"
+              }
+            }, {
+              "name" : "derived_logic_summary",
+              "dataType" : {
+                "type" : "String"
+              }
+            } ]
+          }
+        }
+      }, {
+        "type" : "Schema",
+        "name" : "bronze",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "default",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "gem-testing",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "gems-testing",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "generated",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "gold",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "information_schema",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "raw",
+        "children" : [ ]
+      }, {
+        "type" : "Schema",
+        "name" : "silver",
+        "children" : [ ]
+      } ]
+    } ]
+  },
+  "dependenciesContainer" : {
+    "dependencies" : { },
+    "prophecyProjectDependencies" : {
+      "https://github.com/prophecy-io/databricks-sql-basics" : "172"
+    }
+  },
+  "entitiesToSync" : [ ],
+  "frontEndLanguage" : "sql"
+}

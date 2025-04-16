@@ -1,0 +1,299 @@
+---
+version: 2
+sources:
+- name: "trading.default"
+  description: ""
+  database: "trading"
+  schema: "default"
+  tables:
+  - name: "bronze_extractandinitialenrichments"
+    quoting:
+      identifier: true
+    columns:
+    - name: "deal_id"
+      dataType:
+        type: "Integer"
+    - name: "SECURITY_ID"
+      dataType:
+        type: "Integer"
+    - name: "CURRENCY"
+      dataType:
+        type: "String"
+    - name: "PORTFOLIO_NAME"
+      dataType:
+        type: "String"
+    - name: "REVAL_DATE"
+      dataType:
+        type: "Date"
+    - name: "REVAL_VALUE"
+      dataType:
+        type: "Integer"
+    - name: "tf1_security_id"
+      dataType:
+        type: "Integer"
+    - name: "tf1_currency"
+      dataType:
+        type: "String"
+    - name: "tf1_portfolio_name"
+      dataType:
+        type: "String"
+    - name: "location"
+      dataType:
+        type: "String"
+    - name: "counterparty_name"
+      dataType:
+        type: "String"
+    - name: "face_value"
+      dataType:
+        type: "Integer"
+    - name: "trader_name"
+      dataType:
+        type: "String"
+    - name: "trade_date"
+      dataType:
+        type: "Integer"
+    - name: "settlement_date"
+      dataType:
+        type: "Integer"
+    - name: "maturity_date"
+      dataType:
+        type: "Integer"
+    - name: "buy_sell"
+      dataType:
+        type: "String"
+    - name: "trade_type"
+      dataType:
+        type: "String"
+    - name: "security_name"
+      dataType:
+        type: "String"
+    - name: "start_date"
+      dataType:
+        type: "String"
+    - name: "sl_maturity_date"
+      dataType:
+        type: "String"
+    - name: "issuer_type"
+      dataType:
+        type: "String"
+    - name: "GL_Level_1"
+      dataType:
+        type: "String"
+    - name: "GL_Level_2"
+      dataType:
+        type: "String"
+    - name: "GL_Level_3"
+      dataType:
+        type: "String"
+  - name: "enriched_trade_file_1"
+    quoting:
+      identifier: true
+    columns:
+    - name: "deal_id"
+      dataType:
+        type: "Integer"
+    - name: "security_id"
+      dataType:
+        type: "Integer"
+    - name: "currency"
+      dataType:
+        type: "String"
+    - name: "portfolio_name"
+      dataType:
+        type: "String"
+    - name: "location"
+      dataType:
+        type: "String"
+    - name: "counterparty_name"
+      dataType:
+        type: "String"
+    - name: "face_value"
+      dataType:
+        type: "Integer"
+    - name: "trader_name"
+      dataType:
+        type: "String"
+    - name: "trade_date"
+      dataType:
+        type: "Integer"
+    - name: "settlement_date"
+      dataType:
+        type: "Integer"
+    - name: "maturity_date"
+      dataType:
+        type: "String"
+    - name: "buy_sell"
+      dataType:
+        type: "String"
+    - name: "trade_type"
+      dataType:
+        type: "String"
+    - name: "aud_revalue"
+      dataType:
+        type: "Decimal"
+    - name: "exclude_flag"
+      dataType:
+        type: "String"
+    - name: "coupon_rate"
+      dataType:
+        type: "Decimal"
+    - name: "gl_level_1"
+      dataType:
+        type: "String"
+    - name: "gl_level_2"
+      dataType:
+        type: "String"
+    - name: "gl_level_3"
+      dataType:
+        type: "String"
+    - name: "security_name"
+      dataType:
+        type: "String"
+    - name: "issuer_type"
+      dataType:
+        type: "String"
+  - name: "silver_tagging"
+    quoting:
+      identifier: true
+    columns:
+    - name: "maturity_date"
+      dataType:
+        type: "Date"
+    - name: "start_date"
+      dataType:
+        type: "Date"
+    - name: "deal_id"
+      dataType:
+        type: "Integer"
+    - name: "SECURITY_ID"
+      dataType:
+        type: "Integer"
+    - name: "CURRENCY"
+      dataType:
+        type: "String"
+    - name: "PORTFOLIO_NAME"
+      dataType:
+        type: "String"
+    - name: "REVAL_DATE"
+      dataType:
+        type: "Date"
+    - name: "REVAL_VALUE"
+      dataType:
+        type: "Integer"
+    - name: "tf1_security_id"
+      dataType:
+        type: "Integer"
+    - name: "tf1_currency"
+      dataType:
+        type: "String"
+    - name: "tf1_portfolio_name"
+      dataType:
+        type: "String"
+    - name: "location"
+      dataType:
+        type: "String"
+    - name: "counterparty_name"
+      dataType:
+        type: "String"
+    - name: "face_value"
+      dataType:
+        type: "Integer"
+    - name: "trader_name"
+      dataType:
+        type: "String"
+    - name: "trade_date"
+      dataType:
+        type: "Integer"
+    - name: "settlement_date"
+      dataType:
+        type: "Integer"
+    - name: "string_maturity_date"
+      dataType:
+        type: "String"
+    - name: "buy_sell"
+      dataType:
+        type: "String"
+    - name: "trade_type"
+      dataType:
+        type: "String"
+    - name: "security_name"
+      dataType:
+        type: "String"
+    - name: "sl_maturity_date"
+      dataType:
+        type: "String"
+    - name: "issuer_type"
+      dataType:
+        type: "String"
+    - name: "GL_Level_1"
+      dataType:
+        type: "String"
+    - name: "GL_Level_2"
+      dataType:
+        type: "String"
+    - name: "GL_Level_3"
+      dataType:
+        type: "String"
+    - name: "Conversion_Rate"
+      dataType:
+        type: "Double"
+    - name: "Conversion_Rule"
+      dataType:
+        type: "String"
+    - name: "AUD_REVALUE"
+      dataType:
+        type: "Double"
+- name: "hive_metastore.default"
+  description: ""
+  database: "hive_metastore"
+  schema: "default"
+  tables:
+  - name: "customer_amount"
+    quoting:
+      identifier: true
+    columns:
+    - name: "customer_id"
+      dataType:
+        type: "Bigint"
+    - name: "first_name"
+      dataType:
+        type: "String"
+    - name: "last_name"
+      dataType:
+        type: "String"
+    - name: "median_order_amount"
+      dataType:
+        type: "Decimal"
+    - name: "max_order_amount"
+      dataType:
+        type: "Decimal"
+    - name: "full_name"
+      dataType:
+        type: "String"
+- name: "trading.raw"
+  description: ""
+  database: "trading"
+  schema: "raw"
+  tables:
+  - name: "stock_availability"
+    quoting:
+      identifier: true
+    columns:
+    - name: "location"
+      dataType:
+        type: "String"
+    - name: "gl_level_1"
+      dataType:
+        type: "String"
+    - name: "security_name"
+      dataType:
+        type: "String"
+    - name: "maturity_date"
+      dataType:
+        type: "String"
+    - name: "asset"
+      dataType:
+        type: "String"
+    - name: "total_aud_long_position_available"
+      dataType:
+        type: "Double"

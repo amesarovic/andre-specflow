@@ -1,0 +1,230 @@
+{
+  "id" : "portfolio_risk_analysis",
+  "metainfo" : {
+    "label" : "portfolio_risk_analysis",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "userDefinedConfig" : {
+        "vars" : { }
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "sector_exposure_##EZNdxHj6" : {
+      "id" : "sector_exposure_##EZNdxHj6",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "sector_exposure_cte",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "out",
+          "id" : "out",
+          "language" : "sql",
+          "content" : "SELECT \n  portfolio_id,\n  GROUP_CONCAT(sector, ', ') AS sector_exposure\n\nFROM (\n  SELECT \n    portfolio_id,\n    sector\n  \n  FROM portfolio_composition\n  \n  GROUP BY \n    portfolio_id, sector\n) AS subquery\n\nGROUP BY portfolio_id\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "tk8lQ1yK",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 3
+    },
+    "final##zTP5XQm4" : {
+      "id" : "final##zTP5XQm4",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "portfolio_risk_analysis",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT *\n\nFROM final_cte\n",
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "e6afDpEF",
+          "slug" : "final_cte"
+        } ],
+        "outputs" : [ {
+          "id" : "AO3DpDff",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 5
+    },
+    "risk_metrics##fLi2vgfg" : {
+      "id" : "risk_metrics##fLi2vgfg",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "risk_metrics",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "out",
+          "id" : "out",
+          "language" : "sql",
+          "content" : "SELECT \n  portfolio_id,\n  (AVG(portfolio_value) - risk_free_rate) / STDDEV(portfolio_value) AS sharpe_ratio,\n  VARIANCE(portfolio_value) AS value_at_risk_var_\n\nFROM trade_transactions\n\nGROUP BY portfolio_id\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "vGh5ydaM",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 1
+    },
+    "trade_data##jNgXmhVJ" : {
+      "id" : "trade_data##jNgXmhVJ",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "trade_data",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "out",
+          "id" : "out",
+          "language" : "sql",
+          "content" : "SELECT \n  portfolio_id,\n  COUNT(*) AS trade_count,\n  MAX(portfolio_value) - MIN(portfolio_value) AS drawdown_percentage,\n  STDDEV(portfolio_value) AS portfolio_volatility\n\nFROM trade_transactions\n\nGROUP BY portfolio_id\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "ZbJmTfbd",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 0
+    },
+    "final_cte##XeNBwg2E" : {
+      "id" : "final_cte##XeNBwg2E",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "final_cte",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "out",
+          "id" : "out",
+          "language" : "sql",
+          "content" : "SELECT \n  pd.portfolio_id,\n  pd.client_id,\n  pd.portfolio_value,\n  pd.last_update,\n  td.trade_count,\n  td.drawdown_percentage,\n  td.portfolio_volatility,\n  rm.sharpe_ratio,\n  rm.value_at_risk_var_,\n  er.expected_return,\n  se.sector_exposure,\n  CASE\n    WHEN rm.sharpe_ratio < 1\n      THEN 'High Risk'\n    WHEN rm.sharpe_ratio BETWEEN 1 AND 2\n      THEN 'Medium Risk'\n    ELSE 'Low Risk'\n  END AS risk_category\n\nFROM portfolio_table AS pd\nJOIN trade_data AS td\n   ON pd.portfolio_id = td.portfolio_id\nJOIN risk_metrics AS rm\n   ON pd.portfolio_id = rm.portfolio_id\nJOIN expected_return_cte AS er\n   ON pd.portfolio_id = er.portfolio_id\nJOIN sector_exposure_cte AS se\n   ON pd.portfolio_id = se.portfolio_id\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "Mh9hTxIi",
+          "slug" : "risk_metrics"
+        }, {
+          "id" : "SB91TA6C",
+          "slug" : "expected_return_cte"
+        }, {
+          "id" : "xCuQOYMl",
+          "slug" : "trade_data"
+        }, {
+          "id" : "YAD3peOt",
+          "slug" : "sector_exposure_cte"
+        } ],
+        "outputs" : [ {
+          "id" : "wcaQLFu3",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 4
+    },
+    "expected_return_##Z5HU4Kmy" : {
+      "id" : "expected_return_##Z5HU4Kmy",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "expected_return_cte",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "out",
+          "id" : "out",
+          "language" : "sql",
+          "content" : "SELECT \n  portfolio_id,\n  AVG(portfolio_value) * 0.05 AS expected_return\n\nFROM trade_transactions\n\nGROUP BY portfolio_id\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "euV2s9Vn",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 2
+    }
+  },
+  "connections" : [ {
+    "id" : "prqqEK0Q",
+    "source" : "risk_metrics##fLi2vgfg",
+    "sourcePort" : "vGh5ydaM",
+    "target" : "final_cte##XeNBwg2E",
+    "targetPort" : "Mh9hTxIi"
+  }, {
+    "id" : "J9Xhe9QY",
+    "source" : "expected_return_##Z5HU4Kmy",
+    "sourcePort" : "euV2s9Vn",
+    "target" : "final_cte##XeNBwg2E",
+    "targetPort" : "SB91TA6C"
+  }, {
+    "id" : "TtTmoRcd",
+    "source" : "trade_data##jNgXmhVJ",
+    "sourcePort" : "ZbJmTfbd",
+    "target" : "final_cte##XeNBwg2E",
+    "targetPort" : "xCuQOYMl"
+  }, {
+    "id" : "aisfkym3",
+    "source" : "sector_exposure_##EZNdxHj6",
+    "sourcePort" : "tk8lQ1yK",
+    "target" : "final_cte##XeNBwg2E",
+    "targetPort" : "YAD3peOt"
+  }, {
+    "id" : "dOcAgqWm",
+    "source" : "final_cte##XeNBwg2E",
+    "sourcePort" : "wcaQLFu3",
+    "target" : "final##zTP5XQm4",
+    "targetPort" : "e6afDpEF"
+  } ],
+  "component" : "Model"
+}

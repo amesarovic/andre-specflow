@@ -1,0 +1,45 @@
+---
+version: 2
+models:
+- name: "trade_profitability_summary"
+  columns:
+  - name: "trade_price"
+    dataType:
+      type: "Decimal"
+  - name: "broker_performance"
+    dataType:
+      type: "Decimal"
+  - name: "quantity"
+    dataType:
+      type: "Integer"
+  - name: "profit_loss"
+    dataType:
+      type: "Decimal"
+  - name: "broker_id"
+    dataType:
+      type: "String"
+  - name: "market_price"
+    dataType:
+      type: "Decimal"
+  - name: "derived_logic_summary"
+    dataType:
+      type: "String"
+  - name: "client_profitability"
+    dataType:
+      type: "Decimal"
+  - name: "client_id"
+    dataType:
+      type: "String"
+  - name: "trade_date"
+    dataType:
+      type: "Integer"
+  - name: "security_ticker"
+    dataType:
+      type: "String"
+  - name: "transaction_id"
+    dataType:
+      type: "Integer"
+  - name: "trade_status"
+    dataType:
+      type: "String"
+  tests: []
