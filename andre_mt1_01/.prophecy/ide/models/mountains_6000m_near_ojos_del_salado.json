@@ -1,0 +1,224 @@
+{
+  "id" : "mountains_6000m_near_ojos_del_salado",
+  "metainfo" : {
+    "label" : "mountains_6000m_near_ojos_del_salado",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "userDefinedConfig" : {
+        "vars" : { }
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "final##jo4uTVLJ" : {
+      "id" : "final##jo4uTVLJ",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "mountains_6000m_near_ojos_del_salado",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT *\n\nFROM nearby_locations\n",
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "kvYVxmGe",
+          "slug" : "nearby_locations"
+        } ],
+        "outputs" : [ {
+          "id" : "LlZgjiry",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 4
+    },
+    "nearby_locations##KEiiWoDW" : {
+      "id" : "nearby_locations##KEiiWoDW",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "nearby_locations",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "condition" : {
+          "expression" : "distance_from_ojos <= 200"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "q6iRS02B",
+          "slug" : "distance_calculation"
+        } ],
+        "outputs" : [ {
+          "id" : "kLLIvh6R",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 3
+    },
+    "distance_calcula##wGzFuzAP" : {
+      "id" : "distance_calcula##wGzFuzAP",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "distance_calculation",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "mountain"
+          },
+          "_row_id" : "1645313514"
+        }, {
+          "expression" : {
+            "expression" : "country"
+          },
+          "_row_id" : "326153998"
+        }, {
+          "expression" : {
+            "expression" : "meters"
+          },
+          "_row_id" : "1409823149"
+        }, {
+          "expression" : {
+            "expression" : "feet"
+          },
+          "_row_id" : "1252902710"
+        }, {
+          "expression" : {
+            "expression" : "latitude"
+          },
+          "_row_id" : "2101142336"
+        }, {
+          "expression" : {
+            "expression" : "longitude"
+          },
+          "_row_id" : "864727868"
+        }, {
+          "expression" : {
+            "expression" : "6371\n* ACOS(\n    COS(RADIANS(-27.1092))\n    * COS(RADIANS(latitude))\n    * COS(RADIANS(longitude) - RADIANS(-68.5414))\n    + SIN(RADIANS(-27.1092)) * SIN(RADIANS(latitude)))"
+          },
+          "alias" : "distance_from_ojos",
+          "_row_id" : "1329608519"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "FG5u9agt",
+          "slug" : "mountains_above_6000"
+        } ],
+        "outputs" : [ {
+          "id" : "AyweVBOo",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 2
+    },
+    "mountains_cte_1##pCW5skwz" : {
+      "id" : "mountains_cte_1##pCW5skwz",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "mountains_cte_1",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "mountains",
+          "sourceType" : "Source",
+          "sourceName" : "product_dev.mountains"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "eO2ltmkn",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 0
+    },
+    "mountains_above_##tSxWc2Cg" : {
+      "id" : "mountains_above_##tSxWc2Cg",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "mountains_above_6000",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "condition" : {
+          "expression" : "meters > 6000"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "F1ltl7fc",
+          "slug" : "mountains_cte_1"
+        } ],
+        "outputs" : [ {
+          "id" : "mVy9lXb3",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 1
+    }
+  },
+  "connections" : [ {
+    "id" : "juOQgH9A",
+    "source" : "mountains_cte_1##pCW5skwz",
+    "sourcePort" : "eO2ltmkn",
+    "target" : "mountains_above_##tSxWc2Cg",
+    "targetPort" : "F1ltl7fc"
+  }, {
+    "id" : "tHWJDVWD",
+    "source" : "mountains_above_##tSxWc2Cg",
+    "sourcePort" : "mVy9lXb3",
+    "target" : "distance_calcula##wGzFuzAP",
+    "targetPort" : "FG5u9agt"
+  }, {
+    "id" : "xvRacVQ0",
+    "source" : "distance_calcula##wGzFuzAP",
+    "sourcePort" : "AyweVBOo",
+    "target" : "nearby_locations##KEiiWoDW",
+    "targetPort" : "q6iRS02B"
+  }, {
+    "id" : "FZljlJzu",
+    "source" : "nearby_locations##KEiiWoDW",
+    "sourcePort" : "kLLIvh6R",
+    "target" : "final##jo4uTVLJ",
+    "targetPort" : "kvYVxmGe"
+  } ],
+  "component" : "Model"
+}

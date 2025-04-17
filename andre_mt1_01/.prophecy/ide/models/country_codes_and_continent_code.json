@@ -1,0 +1,136 @@
+{
+  "id" : "country_codes_and_continent_code",
+  "metainfo" : {
+    "label" : "country_codes_and_continent_code",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "userDefinedConfig" : {
+        "vars" : { }
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "countries_cte_1##iYBkiz0A" : {
+      "id" : "countries_cte_1##iYBkiz0A",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "countries_cte_1",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "countries",
+          "sourceType" : "Source",
+          "sourceName" : "product_dev.mountains"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "RkLgFlyi",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 0
+    },
+    "countries_cte##A2oH0Cmg" : {
+      "id" : "countries_cte##A2oH0Cmg",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "countries_cte",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "Country_Name"
+          },
+          "alias" : "country_name",
+          "_row_id" : "1796471481"
+        }, {
+          "expression" : {
+            "expression" : "Three_Letter_Country_Code"
+          },
+          "alias" : "three_letter_country_code",
+          "_row_id" : "2013474764"
+        }, {
+          "expression" : {
+            "expression" : "Continent_Code"
+          },
+          "alias" : "continent_code",
+          "_row_id" : "537175606"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "uERC4dhO",
+          "slug" : "countries_cte_1"
+        } ],
+        "outputs" : [ {
+          "id" : "yb4WcUz2",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 1
+    },
+    "final##E2GuHKtU" : {
+      "id" : "final##E2GuHKtU",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "country_codes_and_continent_code",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT *\n\nFROM countries_cte\n",
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "N2TIFgu3",
+          "slug" : "countries_cte"
+        } ],
+        "outputs" : [ {
+          "id" : "qiL1JVAq",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 2
+    }
+  },
+  "connections" : [ {
+    "id" : "e4pvjfXM",
+    "source" : "countries_cte_1##iYBkiz0A",
+    "sourcePort" : "RkLgFlyi",
+    "target" : "countries_cte##A2oH0Cmg",
+    "targetPort" : "uERC4dhO"
+  }, {
+    "id" : "OEnRyq27",
+    "source" : "countries_cte##A2oH0Cmg",
+    "sourcePort" : "yb4WcUz2",
+    "target" : "final##E2GuHKtU",
+    "targetPort" : "N2TIFgu3"
+  } ],
+  "component" : "Model"
+}

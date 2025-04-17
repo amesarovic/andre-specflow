@@ -1,0 +1,316 @@
+{
+  "id" : "ten_highest_mountains_per_continent",
+  "metainfo" : {
+    "label" : "ten_highest_mountains_per_continent",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "userDefinedConfig" : {
+        "vars" : { }
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "mountains_cte_1##JAkZAxiO" : {
+      "id" : "mountains_cte_1##JAkZAxiO",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "mountains_cte_1",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "mountains",
+          "sourceType" : "Source",
+          "sourceName" : "product_dev.mountains"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "raqhe13S",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 0
+    },
+    "top_ranked_data##HXs5BUkS" : {
+      "id" : "top_ranked_data##HXs5BUkS",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "top_ranked_data",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "condition" : {
+          "expression" : "rank <= 10"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "P3FA4SH5",
+          "slug" : "partitioned_data"
+        } ],
+        "outputs" : [ {
+          "id" : "pMKSSloO",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 4
+    },
+    "final##j9TvFBzs" : {
+      "id" : "final##j9TvFBzs",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "ten_highest_mountains_per_continent",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT *\n\nFROM top_ranked_data\n",
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "QoQjR2uT",
+          "slug" : "top_ranked_data"
+        } ],
+        "outputs" : [ {
+          "id" : "edvagj2g",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 5
+    },
+    "joined_data##VG44XuYL" : {
+      "id" : "joined_data##VG44XuYL",
+      "component" : "Join",
+      "metadata" : {
+        "label" : "joined_data",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "conditions" : [ {
+          "alias" : "c",
+          "expression" : {
+            "expression" : "m.country = c.Country_Name"
+          },
+          "joinType" : ""
+        } ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "m.mountain"
+          },
+          "_row_id" : "668455427"
+        }, {
+          "expression" : {
+            "expression" : "m.country"
+          },
+          "_row_id" : "1806241399"
+        }, {
+          "expression" : {
+            "expression" : "m.meters"
+          },
+          "_row_id" : "423740925"
+        }, {
+          "expression" : {
+            "expression" : "m.feet"
+          },
+          "_row_id" : "82516636"
+        }, {
+          "expression" : {
+            "expression" : "m.latitude"
+          },
+          "_row_id" : "666521399"
+        }, {
+          "expression" : {
+            "expression" : "m.longitude"
+          },
+          "_row_id" : "1381727291"
+        }, {
+          "expression" : {
+            "expression" : "c.Continent_Name"
+          },
+          "_row_id" : "411667037"
+        }, {
+          "expression" : {
+            "expression" : "c.Continent_Code"
+          },
+          "_row_id" : "1617789266"
+        } ],
+        "activeTab" : "conditions",
+        "columnsSelector" : [ ],
+        "headAlias" : "m"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "uE1WWh2l",
+          "slug" : "m"
+        }, {
+          "id" : "AZuSJWn2",
+          "slug" : "c"
+        } ],
+        "outputs" : [ {
+          "id" : "Us6oSoak",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 2
+    },
+    "countries_cte_1##G09aWQA5" : {
+      "id" : "countries_cte_1##G09aWQA5",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "countries_cte_1",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "countries",
+          "sourceType" : "Source",
+          "sourceName" : "product_dev.mountains"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "udZHurbf",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 1
+    },
+    "partitioned_data##TSoFnqit" : {
+      "id" : "partitioned_data##TSoFnqit",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "partitioned_data",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "mountain"
+          },
+          "_row_id" : "2050028757"
+        }, {
+          "expression" : {
+            "expression" : "country"
+          },
+          "_row_id" : "746402575"
+        }, {
+          "expression" : {
+            "expression" : "meters"
+          },
+          "_row_id" : "1188504000"
+        }, {
+          "expression" : {
+            "expression" : "feet"
+          },
+          "_row_id" : "1504134114"
+        }, {
+          "expression" : {
+            "expression" : "latitude"
+          },
+          "_row_id" : "516103733"
+        }, {
+          "expression" : {
+            "expression" : "longitude"
+          },
+          "_row_id" : "658458081"
+        }, {
+          "expression" : {
+            "expression" : "Continent_Name"
+          },
+          "_row_id" : "1077882491"
+        }, {
+          "expression" : {
+            "expression" : "Continent_Code"
+          },
+          "_row_id" : "1647886973"
+        }, {
+          "expression" : {
+            "expression" : "ROW_NUMBER() OVER (PARTITION BY Continent_Name ORDER BY meters DESC)"
+          },
+          "alias" : "rank",
+          "_row_id" : "140643044"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "YwzwpwkN",
+          "slug" : "joined_data"
+        } ],
+        "outputs" : [ {
+          "id" : "UbzcYnKo",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 3
+    }
+  },
+  "connections" : [ {
+    "id" : "JcnC2jVM",
+    "source" : "mountains_cte_1##JAkZAxiO",
+    "sourcePort" : "raqhe13S",
+    "target" : "joined_data##VG44XuYL",
+    "targetPort" : "uE1WWh2l"
+  }, {
+    "id" : "UVu9M5M9",
+    "source" : "countries_cte_1##G09aWQA5",
+    "sourcePort" : "udZHurbf",
+    "target" : "joined_data##VG44XuYL",
+    "targetPort" : "AZuSJWn2"
+  }, {
+    "id" : "aqNfiK77",
+    "source" : "joined_data##VG44XuYL",
+    "sourcePort" : "Us6oSoak",
+    "target" : "partitioned_data##TSoFnqit",
+    "targetPort" : "YwzwpwkN"
+  }, {
+    "id" : "GfHS4fKJ",
+    "source" : "partitioned_data##TSoFnqit",
+    "sourcePort" : "UbzcYnKo",
+    "target" : "top_ranked_data##HXs5BUkS",
+    "targetPort" : "P3FA4SH5"
+  }, {
+    "id" : "nVhKapmw",
+    "source" : "top_ranked_data##HXs5BUkS",
+    "sourcePort" : "pMKSSloO",
+    "target" : "final##j9TvFBzs",
+    "targetPort" : "QoQjR2uT"
+  } ],
+  "component" : "Model"
+}

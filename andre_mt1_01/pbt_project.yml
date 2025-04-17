@@ -1,0 +1,346 @@
+name: andre_mt1_01
+description: Uses product_dev fabric
+version: 0.0.1
+author: admin@prophecy.io
+language: sql
+buildSystem: ''
+buildSystemDetails: null
+pipelines: {}
+datasets: {}
+templates: {}
+jobs: {}
+gemContainer:
+  languageVersion: ''
+  gemLibsVersion: ''
+  gems: {}
+  dependencies: null
+functions:
+  author: null
+  createdAt: '2025-04-17 20:17:01'
+  udfs: {}
+  udafs: {}
+  expressions: {}
+  airflowFunctions: {}
+  businessRules: {}
+subgraphs: {}
+sqlModels:
+  .prophecy/metadata/sqlmodels/most_northern_five_mountains_per_continent:
+    name: most_northern_five_mountains_per_continent
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: mountain
+        dataType:
+          type: String
+      - name: country
+        dataType:
+          type: String
+      - name: meters
+        dataType:
+          type: Integer
+      - name: feet
+        dataType:
+          type: Integer
+      - name: latitude
+        dataType:
+          type: Double
+      - name: longitude
+        dataType:
+          type: Double
+      - name: Continent_Name
+        dataType:
+          type: String
+      - name: rn
+        dataType:
+          type: Integer
+    description: null
+    author: admin@prophecy.io
+    files:
+    - models/most_northern_five_mountains_per_continent.sql
+    - .prophecy/ide/models/most_northern_five_mountains_per_continent.json
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-17 20:20:09'
+  .prophecy/metadata/sqlmodels/mountains_6000m_near_ojos_del_salado:
+    name: mountains_6000m_near_ojos_del_salado
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: mountain
+        dataType:
+          type: String
+      - name: country
+        dataType:
+          type: String
+      - name: meters
+        dataType:
+          type: Integer
+      - name: feet
+        dataType:
+          type: Integer
+      - name: latitude
+        dataType:
+          type: Double
+      - name: longitude
+        dataType:
+          type: Double
+      - name: distance_from_ojos
+        dataType:
+          type: Double
+    description: null
+    author: admin@prophecy.io
+    files:
+    - models/mountains_6000m_near_ojos_del_salado.sql
+    - .prophecy/ide/models/mountains_6000m_near_ojos_del_salado.json
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-17 20:20:09'
+  .prophecy/metadata/sqlmodels/five_highest_mountains_per_country:
+    name: five_highest_mountains_per_country
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: mountain
+        dataType:
+          type: String
+      - name: country
+        dataType:
+          type: String
+      - name: meters
+        dataType:
+          type: Integer
+      - name: feet
+        dataType:
+          type: Integer
+      - name: latitude
+        dataType:
+          type: Double
+      - name: longitude
+        dataType:
+          type: Double
+      - name: rank
+        dataType:
+          type: Integer
+    description: null
+    author: admin@prophecy.io
+    files:
+    - models/five_highest_mountains_per_country.sql
+    - .prophecy/ide/models/five_highest_mountains_per_country.json
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-17 20:20:09'
+  .prophecy/metadata/sqlmodels/most_northern_five_mountains_per_country:
+    name: most_northern_five_mountains_per_country
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: mountain
+        dataType:
+          type: String
+      - name: country
+        dataType:
+          type: String
+      - name: meters
+        dataType:
+          type: Integer
+      - name: feet
+        dataType:
+          type: Integer
+      - name: latitude
+        dataType:
+          type: Double
+      - name: longitude
+        dataType:
+          type: Double
+      - name: rn
+        dataType:
+          type: Integer
+    description: null
+    author: admin@prophecy.io
+    files:
+    - models/most_northern_five_mountains_per_country.sql
+    - .prophecy/ide/models/most_northern_five_mountains_per_country.json
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-17 20:20:09'
+  .prophecy/metadata/sqlmodels/ten_highest_mountains_per_continent:
+    name: ten_highest_mountains_per_continent
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: mountain
+        dataType:
+          type: String
+      - name: country
+        dataType:
+          type: String
+      - name: meters
+        dataType:
+          type: Integer
+      - name: feet
+        dataType:
+          type: Integer
+      - name: latitude
+        dataType:
+          type: Double
+      - name: longitude
+        dataType:
+          type: Double
+      - name: Continent_Name
+        dataType:
+          type: String
+      - name: Continent_Code
+        dataType:
+          type: String
+      - name: rank
+        dataType:
+          type: Integer
+    description: null
+    author: admin@prophecy.io
+    files:
+    - models/ten_highest_mountains_per_continent.sql
+    - .prophecy/ide/models/ten_highest_mountains_per_continent.json
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-17 20:20:09'
+  .prophecy/metadata/sqlmodels/country_codes_and_continent_code:
+    name: country_codes_and_continent_code
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: country_name
+        dataType:
+          type: String
+      - name: three_letter_country_code
+        dataType:
+          type: String
+      - name: continent_code
+        dataType:
+          type: String
+    description: null
+    author: admin@prophecy.io
+    files:
+    - models/country_codes_and_continent_code.sql
+    - .prophecy/ide/models/country_codes_and_continent_code.json
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-17 20:20:09'
+sqlSnapshots: {}
+sqlTests: {}
+sqlMacros:
+  .prophecy/metadata/sqlmacros/generate_schema_name:
+    name: generate_schema_name
+    macroType: expression
+    description: null
+    author: admin@prophecy.io
+    files:
+    - macros/generate_schema_name.sql
+    - .prophecy/ide/macros/generate_schema_name.json
+    createdAt: '2025-04-17 20:17:03'
+sqlSeeds: {}
+sqlSources:
+  .prophecy/metadata/sqlsources/product_dev_mountains:
+    name: product_dev.mountains
+    description: ''
+    author: admin@prophecy.io
+    files:
+    - prophecy-sources/sources.
+    createdAt: '2025-04-17 20:19:16'
+    tables:
+    - name: mountains
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: mountain
+          dataType:
+            type: String
+        - name: country
+          dataType:
+            type: String
+        - name: meters
+          dataType:
+            type: Integer
+        - name: feet
+          dataType:
+            type: Integer
+        - name: latitude
+          dataType:
+            type: Double
+        - name: longitude
+          dataType:
+            type: Double
+      description: null
+      author: admin@prophecy.io
+      tableType: null
+      createdAt: '2025-04-17 20:19:16'
+    - name: countries
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: Continent_Name
+          dataType:
+            type: String
+        - name: Continent_Code
+          dataType:
+            type: String
+        - name: Country_Name
+          dataType:
+            type: String
+        - name: Two_Letter_Country_Code
+          dataType:
+            type: String
+        - name: Three_Letter_Country_Code
+          dataType:
+            type: String
+        - name: Country_Number
+          dataType:
+            type: Double
+      description: null
+      author: admin@prophecy.io
+      tableType: null
+      createdAt: '2025-04-17 20:19:16'
+sqlUnreferencedSources: {}
+sqlOrchestratorPipelines: {}
+sqlBusinessApps: {}
+sqlPipeline:
+  name: sqlPipeline
+  description: null
+  author: admin@prophecy.io
+  createdAt: '2025-04-17 20:17:01'
+dependencies: []
+projectDependencies: {}
+flags:
+  shouldAddDefaultDependenciesIfAbsent: false
+pipelineConfigurations: {}

@@ -1,0 +1,306 @@
+{
+  "id" : "most_northern_five_mountains_per_continent",
+  "metainfo" : {
+    "label" : "most_northern_five_mountains_per_continent",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "userDefinedConfig" : {
+        "vars" : { }
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "ranked_mountains##Gz201p5X" : {
+      "id" : "ranked_mountains##Gz201p5X",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "ranked_mountains",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "mountain"
+          },
+          "_row_id" : "1357758425"
+        }, {
+          "expression" : {
+            "expression" : "country"
+          },
+          "_row_id" : "745799148"
+        }, {
+          "expression" : {
+            "expression" : "meters"
+          },
+          "_row_id" : "1203980532"
+        }, {
+          "expression" : {
+            "expression" : "feet"
+          },
+          "_row_id" : "697957979"
+        }, {
+          "expression" : {
+            "expression" : "latitude"
+          },
+          "_row_id" : "2076833166"
+        }, {
+          "expression" : {
+            "expression" : "longitude"
+          },
+          "_row_id" : "1229743756"
+        }, {
+          "expression" : {
+            "expression" : "Continent_Name"
+          },
+          "_row_id" : "226697329"
+        }, {
+          "expression" : {
+            "expression" : "ROW_NUMBER() OVER (PARTITION BY Continent_Name ORDER BY latitude DESC)"
+          },
+          "alias" : "rn",
+          "_row_id" : "1226256546"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "Dmuo6qiK",
+          "slug" : "joined_data"
+        } ],
+        "outputs" : [ {
+          "id" : "SntosRiU",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 3
+    },
+    "countries_cte_1##Vs5X1a4a" : {
+      "id" : "countries_cte_1##Vs5X1a4a",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "countries_cte_1",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "countries",
+          "sourceType" : "Source",
+          "sourceName" : "product_dev.mountains"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "jlq0LKoa",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 1
+    },
+    "final##Ixepkr1a" : {
+      "id" : "final##Ixepkr1a",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "most_northern_five_mountains_per_continent",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT *\n\nFROM top_ranked_mountains\n",
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "ScwlSJSt",
+          "slug" : "top_ranked_mountains"
+        } ],
+        "outputs" : [ {
+          "id" : "khmQzKQJ",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 5
+    },
+    "joined_data##J41YpLoj" : {
+      "id" : "joined_data##J41YpLoj",
+      "component" : "Join",
+      "metadata" : {
+        "label" : "joined_data",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "conditions" : [ {
+          "alias" : "c",
+          "expression" : {
+            "expression" : "m.country = c.Country_Name"
+          },
+          "joinType" : ""
+        } ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "m.mountain"
+          },
+          "_row_id" : "594806389"
+        }, {
+          "expression" : {
+            "expression" : "m.country"
+          },
+          "_row_id" : "1225481089"
+        }, {
+          "expression" : {
+            "expression" : "m.meters"
+          },
+          "_row_id" : "965122163"
+        }, {
+          "expression" : {
+            "expression" : "m.feet"
+          },
+          "_row_id" : "1548117208"
+        }, {
+          "expression" : {
+            "expression" : "m.latitude"
+          },
+          "_row_id" : "926995531"
+        }, {
+          "expression" : {
+            "expression" : "m.longitude"
+          },
+          "_row_id" : "725443194"
+        }, {
+          "expression" : {
+            "expression" : "c.Continent_Name"
+          },
+          "_row_id" : "1303441875"
+        } ],
+        "activeTab" : "conditions",
+        "columnsSelector" : [ ],
+        "headAlias" : "m"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "EIjjV94G",
+          "slug" : "m"
+        }, {
+          "id" : "PV5wZJh9",
+          "slug" : "c"
+        } ],
+        "outputs" : [ {
+          "id" : "LJiOpm8U",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 2
+    },
+    "top_ranked_mount##KPVP3G7M" : {
+      "id" : "top_ranked_mount##KPVP3G7M",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "top_ranked_mountains",
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "condition" : {
+          "expression" : "rn <= 5"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "hKQrPtap",
+          "slug" : "ranked_mountains"
+        } ],
+        "outputs" : [ {
+          "id" : "lPlccK78",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 4
+    },
+    "mountains_cte_1##cLHdl0Kg" : {
+      "id" : "mountains_cte_1##cLHdl0Kg",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "mountains_cte_1",
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "mountains",
+          "sourceType" : "Source",
+          "sourceName" : "product_dev.mountains"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "q3iw5reR",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 0
+    }
+  },
+  "connections" : [ {
+    "id" : "QKLfxuzv",
+    "source" : "mountains_cte_1##cLHdl0Kg",
+    "sourcePort" : "q3iw5reR",
+    "target" : "joined_data##J41YpLoj",
+    "targetPort" : "EIjjV94G"
+  }, {
+    "id" : "MXcKlj29",
+    "source" : "countries_cte_1##Vs5X1a4a",
+    "sourcePort" : "jlq0LKoa",
+    "target" : "joined_data##J41YpLoj",
+    "targetPort" : "PV5wZJh9"
+  }, {
+    "id" : "QXSwjJAN",
+    "source" : "joined_data##J41YpLoj",
+    "sourcePort" : "LJiOpm8U",
+    "target" : "ranked_mountains##Gz201p5X",
+    "targetPort" : "Dmuo6qiK"
+  }, {
+    "id" : "QDTGP96q",
+    "source" : "ranked_mountains##Gz201p5X",
+    "sourcePort" : "SntosRiU",
+    "target" : "top_ranked_mount##KPVP3G7M",
+    "targetPort" : "hKQrPtap"
+  }, {
+    "id" : "gBVqayNd",
+    "source" : "top_ranked_mount##KPVP3G7M",
+    "sourcePort" : "lPlccK78",
+    "target" : "final##Ixepkr1a",
+    "targetPort" : "ScwlSJSt"
+  } ],
+  "component" : "Model"
+}
