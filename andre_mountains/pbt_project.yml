@@ -50,25 +50,7 @@ sqlSources:
       schema:
         entityType: ''
         providerType: databricks
-        fields:
-        - name: mountain
-          dataType:
-            type: String
-        - name: country
-          dataType:
-            type: String
-        - name: meters
-          dataType:
-            type: Integer
-        - name: feet
-          dataType:
-            type: Integer
-        - name: latitude
-          dataType:
-            type: Double
-        - name: longitude
-          dataType:
-            type: Double
+        fields: []
       description: null
       author: admin@prophecy.io
       tableType: null
@@ -77,25 +59,7 @@ sqlSources:
       schema:
         entityType: ''
         providerType: databricks
-        fields:
-        - name: Continent_Name
-          dataType:
-            type: String
-        - name: Continent_Code
-          dataType:
-            type: String
-        - name: Country_Name
-          dataType:
-            type: String
-        - name: Two_Letter_Country_Code
-          dataType:
-            type: String
-        - name: Three_Letter_Country_Code
-          dataType:
-            type: String
-        - name: Country_Number
-          dataType:
-            type: Double
+        fields: []
       description: null
       author: admin@prophecy.io
       tableType: null
