@@ -1,0 +1,178 @@
+{
+  "name" : "andre_mountains",
+  "fileSystem" : {
+    "type" : "Folder",
+    "name" : "",
+    "children" : { },
+    "path" : "",
+    "editable" : true
+  },
+  "providerType" : "databricks",
+  "prophecyIDEFolder" : {
+    "name" : "",
+    "children" : { },
+    "path" : "",
+    "editable" : true
+  },
+  "externalSources" : {
+    "type" : "Project",
+    "name" : "",
+    "children" : [ {
+      "type" : "Catalog",
+      "name" : "__databricks_internal",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "acxiom",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "archer_pov",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "bobwelshmer",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "ccf",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "dais_2024_analytics_data_raw",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "databricks_cookies_dataset_dais_2024",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "dev",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "evernorth",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "gen_ai",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "hive_metastore",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "jll",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "kenpei",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "louis",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "main",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "mce",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "md_execution_metrics",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "ntong",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "nyc_taxi",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "omop",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "omop_cdm",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "optum",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "pipelinehub",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "product_dev",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "prophecy-demos",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "prophecy_data",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "prophecy_demos",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "redshift_foreign",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "samples",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "snowbob_catalog",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "system",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "toyota",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "trading",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "uc_enabled",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "vlaunir_demos",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "westpac",
+      "children" : [ ]
+    }, {
+      "type" : "Catalog",
+      "name" : "williams",
+      "children" : [ ]
+    } ]
+  },
+  "dependenciesContainer" : {
+    "dependencies" : { },
+    "prophecyProjectDependencies" : {
+      "https://github.com/prophecy-io/databricks-sql-basics" : "172"
+    }
+  },
+  "entitiesToSync" : [ ],
+  "frontEndLanguage" : "sql"
+}
