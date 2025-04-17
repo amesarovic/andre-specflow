@@ -2,7 +2,7 @@
   "id" : "five_highest_mountains_per_country",
   "metainfo" : {
     "label" : "five_highest_mountains_per_country",
-    "autoLayout" : true,
+    "autoLayout" : false,
     "staleState" : "none",
     "sourceSuggestions" : {
       "sources" : [ ]
@@ -20,6 +20,8 @@
       "component" : "Source",
       "metadata" : {
         "label" : "mountains_cte",
+        "x" : 20,
+        "y" : 20,
         "phase" : 0,
         "isLabelGrayed" : false
       },
@@ -46,6 +48,8 @@
       "component" : "Reformat",
       "metadata" : {
         "label" : "ranked_mountains",
+        "x" : 220,
+        "y" : 20,
         "phase" : 0,
         "macroDependencies" : [ ],
         "isLabelGrayed" : false
@@ -109,6 +113,8 @@
       "component" : "Filter",
       "metadata" : {
         "label" : "top_ranked_mountains",
+        "x" : 420,
+        "y" : 20,
         "phase" : 0,
         "macroDependencies" : [ ],
         "isLabelGrayed" : false
@@ -138,6 +144,8 @@
       "component" : "TargetModel",
       "metadata" : {
         "label" : "five_highest_mountains_per_country",
+        "x" : 620,
+        "y" : 20,
         "phase" : 0,
         "isLabelGrayed" : false
       },

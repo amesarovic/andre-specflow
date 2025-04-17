@@ -178,14 +178,6 @@
     "type" : "Model",
     "syncedOnce" : false
   }, {
-    "name" : "five_highest_mountains_per_country",
-    "type" : "Model",
-    "syncedOnce" : false
-  }, {
-    "name" : "most_northern_five_mountains_per_continent",
-    "type" : "Model",
-    "syncedOnce" : false
-  }, {
     "name" : "most_northern_five_mountains_per_country",
     "type" : "Model",
     "syncedOnce" : false

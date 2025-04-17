@@ -1,0 +1,54 @@
+---
+version: 2
+models:
+- name: "most_northern_five_mountains_per_continent"
+  columns:
+  - name: "Continent_Name"
+    dataType:
+      type: "String"
+  - name: "rn"
+    dataType:
+      type: "Integer"
+  - name: "latitude"
+    dataType:
+      type: "Double"
+  - name: "feet"
+    dataType:
+      type: "Integer"
+  - name: "country"
+    dataType:
+      type: "String"
+  - name: "longitude"
+    dataType:
+      type: "Double"
+  - name: "mountain"
+    dataType:
+      type: "String"
+  - name: "meters"
+    dataType:
+      type: "Integer"
+  tests: []
+- name: "five_highest_mountains_per_country"
+  columns:
+  - name: "latitude"
+    dataType:
+      type: "Double"
+  - name: "rank"
+    dataType:
+      type: "Integer"
+  - name: "feet"
+    dataType:
+      type: "Integer"
+  - name: "country"
+    dataType:
+      type: "String"
+  - name: "longitude"
+    dataType:
+      type: "Double"
+  - name: "mountain"
+    dataType:
+      type: "String"
+  - name: "meters"
+    dataType:
+      type: "Integer"
+  tests: []

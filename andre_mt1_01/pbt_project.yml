@@ -59,6 +59,7 @@ sqlModels:
     files:
     - models/most_northern_five_mountains_per_continent.sql
     - .prophecy/ide/models/most_northern_five_mountains_per_continent.json
+    - models/schema.yml
     sqlDependencies:
       models: []
       datasets: []
@@ -137,6 +138,7 @@ sqlModels:
     files:
     - models/five_highest_mountains_per_country.sql
     - .prophecy/ide/models/five_highest_mountains_per_country.json
+    - models/schema.yml
     sqlDependencies:
       models: []
       datasets: []

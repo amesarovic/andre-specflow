@@ -2,7 +2,7 @@
   "id" : "most_northern_five_mountains_per_continent",
   "metainfo" : {
     "label" : "most_northern_five_mountains_per_continent",
-    "autoLayout" : true,
+    "autoLayout" : false,
     "staleState" : "none",
     "sourceSuggestions" : {
       "sources" : [ ]
@@ -20,6 +20,8 @@
       "component" : "Reformat",
       "metadata" : {
         "label" : "ranked_mountains",
+        "x" : 420,
+        "y" : 120,
         "phase" : 0,
         "macroDependencies" : [ ],
         "isLabelGrayed" : false
@@ -88,6 +90,8 @@
       "component" : "Source",
       "metadata" : {
         "label" : "countries_cte_1",
+        "x" : 20,
+        "y" : 220,
         "phase" : 0,
         "isLabelGrayed" : false
       },
@@ -114,6 +118,8 @@
       "component" : "TargetModel",
       "metadata" : {
         "label" : "most_northern_five_mountains_per_continent",
+        "x" : 820,
+        "y" : 120,
         "phase" : 0,
         "isLabelGrayed" : false
       },
@@ -146,6 +152,8 @@
       "component" : "Join",
       "metadata" : {
         "label" : "joined_data",
+        "x" : 220,
+        "y" : 120,
         "phase" : 0,
         "macroDependencies" : [ ],
         "isLabelGrayed" : false
@@ -220,6 +228,8 @@
       "component" : "Filter",
       "metadata" : {
         "label" : "top_ranked_mountains",
+        "x" : 620,
+        "y" : 120,
         "phase" : 0,
         "macroDependencies" : [ ],
         "isLabelGrayed" : false
@@ -249,6 +259,8 @@
       "component" : "Source",
       "metadata" : {
         "label" : "mountains_cte_1",
+        "x" : 20,
+        "y" : 20,
         "phase" : 0,
         "isLabelGrayed" : false
       },

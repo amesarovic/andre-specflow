@@ -1,6 +1,6 @@
 WITH mountains_cte AS (
 
-  SELECT *
+  SELECT * 
   
   FROM {{ source('product_dev.mountains', 'mountains') }}
 
@@ -23,7 +23,7 @@ ranked_mountains AS (
 
 top_ranked_mountains AS (
 
-  SELECT *
+  SELECT * 
   
   FROM ranked_mountains
   
