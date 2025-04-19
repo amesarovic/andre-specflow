@@ -1,0 +1,27 @@
+---
+version: 2
+models:
+- name: "transformation_1_ten_highest_peaks_in_south_america"
+  columns:
+  - name: "latitude"
+    dataType:
+      type: "Double"
+  - name: "height"
+    dataType:
+      type: "Integer"
+  - name: "feet"
+    dataType:
+      type: "Integer"
+  - name: "country"
+    dataType:
+      type: "String"
+  - name: "longitude"
+    dataType:
+      type: "Double"
+  - name: "GDP_Per_Capita"
+    dataType:
+      type: "Double"
+  - name: "mountain_name"
+    dataType:
+      type: "String"
+  tests: []

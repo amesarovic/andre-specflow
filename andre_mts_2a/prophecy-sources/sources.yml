@@ -1,0 +1,55 @@
+---
+version: 2
+sources:
+- name: "product_dev.mountains"
+  description: ""
+  database: "product_dev"
+  schema: "mountains"
+  tables:
+  - name: "mountains"
+    quoting:
+      identifier: true
+    columns:
+    - name: "mountain"
+      dataType:
+        type: "String"
+    - name: "country"
+      dataType:
+        type: "String"
+    - name: "meters"
+      dataType:
+        type: "Integer"
+    - name: "feet"
+      dataType:
+        type: "Integer"
+    - name: "latitude"
+      dataType:
+        type: "Double"
+    - name: "longitude"
+      dataType:
+        type: "Double"
+    - name: "region"
+      dataType:
+        type: "String"
+  - name: "countries"
+    quoting:
+      identifier: true
+    columns:
+    - name: "Country_Name"
+      dataType:
+        type: "String"
+    - name: "Country_Code"
+      dataType:
+        type: "String"
+    - name: "Continent_Name"
+      dataType:
+        type: "String"
+    - name: "Continent_Code"
+      dataType:
+        type: "String"
+    - name: "Population"
+      dataType:
+        type: "Double"
+    - name: "GDP_Per_Capita"
+      dataType:
+        type: "Double"
