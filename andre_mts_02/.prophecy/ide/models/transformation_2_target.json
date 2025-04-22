@@ -2,8 +2,8 @@
   "id" : "transformation_2_target",
   "metainfo" : {
     "label" : "transformation_2_target",
-    "autoLayout" : true,
-    "staleState" : "none",
+    "autoLayout" : false,
+    "staleState" : "file",
     "sourceSuggestions" : {
       "sources" : [ ]
     },
@@ -20,6 +20,8 @@
       "component" : "Reformat",
       "metadata" : {
         "label" : "mountains_cte",
+        "x" : 220,
+        "y" : 20,
         "phase" : 0,
         "macroDependencies" : [ ],
         "isLabelGrayed" : false
@@ -81,6 +83,8 @@
       "component" : "Join",
       "metadata" : {
         "label" : "filtered_mountains",
+        "x" : 420,
+        "y" : 120,
         "phase" : 0,
         "macroDependencies" : [ ],
         "isLabelGrayed" : false
@@ -150,6 +154,8 @@
       "component" : "Limit",
       "metadata" : {
         "label" : "top_3_mountains",
+        "x" : 820,
+        "y" : 120,
         "phase" : 0,
         "isLabelGrayed" : false
       },
@@ -177,6 +183,8 @@
       "component" : "Source",
       "metadata" : {
         "label" : "mountains_cte_1",
+        "x" : 20,
+        "y" : 20,
         "phase" : 0,
         "isLabelGrayed" : false
       },
@@ -203,6 +211,8 @@
       "component" : "Model",
       "metadata" : {
         "label" : "transformation_5_target_cte",
+        "x" : 20,
+        "y" : 220,
         "phase" : 0,
         "isLabelGrayed" : false
       },
@@ -228,6 +238,8 @@
       "component" : "Filter",
       "metadata" : {
         "label" : "andean_countries_1",
+        "x" : 220,
+        "y" : 220,
         "phase" : 0,
         "macroDependencies" : [ ],
         "isLabelGrayed" : false
@@ -257,6 +269,8 @@
       "component" : "TargetModel",
       "metadata" : {
         "label" : "transformation_2_target",
+        "x" : 1020,
+        "y" : 120,
         "phase" : 0,
         "isLabelGrayed" : false
       },
@@ -289,6 +303,8 @@
       "component" : "OrderBy",
       "metadata" : {
         "label" : "sorted_mountains_1",
+        "x" : 620,
+        "y" : 120,
         "phase" : 0,
         "macroDependencies" : [ ],
         "isLabelGrayed" : false

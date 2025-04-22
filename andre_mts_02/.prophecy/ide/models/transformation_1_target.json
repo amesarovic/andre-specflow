@@ -3,11 +3,15 @@
   "metainfo" : {
     "label" : "transformation_1_target",
     "autoLayout" : false,
-    "staleState" : "file",
+    "staleState" : "none",
     "sourceSuggestions" : {
       "sources" : [ ]
     },
     "graphConfig" : {
+      "entityConfig" : {
+        "database" : "\"andre_dev\"",
+        "type" : "ModelConfig"
+      },
       "userDefinedConfig" : {
         "vars" : { }
       }

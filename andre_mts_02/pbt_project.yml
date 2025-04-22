@@ -157,7 +157,7 @@ sqlSources:
     description: ''
     author: admin@prophecy.io
     files:
-    - prophecy-sources/sources.
+    - prophecy-sources/sources.yml
     createdAt: '2025-04-19 06:01:39'
     tables:
     - name: mountains
