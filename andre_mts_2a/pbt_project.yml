@@ -1,5 +1,5 @@
-name: andre_mt1_01
-description: Uses product_dev fabric
+name: andre_mts_2a
+description: ''
 version: 0.0.1
 author: admin@prophecy.io
 language: sql
@@ -16,7 +16,7 @@ gemContainer:
   dependencies: null
 functions:
   author: null
-  createdAt: '2025-04-17 20:17:01'
+  createdAt: '2025-04-19 19:33:29'
   udfs: {}
   udafs: {}
   expressions: {}
@@ -24,91 +24,68 @@ functions:
   businessRules: {}
 subgraphs: {}
 sqlModels:
-  .prophecy/metadata/sqlmodels/most_northern_five_mountains_per_continent:
-    name: most_northern_five_mountains_per_continent
+  .prophecy/metadata/sqlmodels/transformation_4_ten_highest_peaks_in_non_andean_south_american_countries:
+    name: transformation_4_ten_highest_peaks_in_non_andean_south_american_countries
     schema:
       entityType: ''
       providerType: Databricks
       fields:
-      - name: mountain
+      - name: mountain_name
         dataType:
           type: String
       - name: country
         dataType:
           type: String
-      - name: meters
+      - name: height
         dataType:
           type: Integer
-      - name: feet
-        dataType:
-          type: Integer
-      - name: latitude
-        dataType:
-          type: Double
-      - name: longitude
-        dataType:
-          type: Double
-      - name: Continent_Name
+      - name: region
         dataType:
           type: String
-      - name: rn
-        dataType:
-          type: Integer
     description: null
     author: admin@prophecy.io
     files:
-    - models/most_northern_five_mountains_per_continent.sql
-    - .prophecy/ide/models/most_northern_five_mountains_per_continent.json
-    - models/schema.yml
+    - models/transformation_4_ten_highest_peaks_in_non_andean_south_american_countries.sql
+    - .prophecy/ide/models/transformation_4_ten_highest_peaks_in_non_andean_south_american_countries.json
     sqlDependencies:
       models: []
       datasets: []
       seeds: []
       sources: []
       snapshots: []
-    createdAt: '2025-04-17 20:20:09'
-  .prophecy/metadata/sqlmodels/mountains_6000m_near_ojos_del_salado:
-    name: mountains_6000m_near_ojos_del_salado
+    createdAt: '2025-04-19 20:17:50'
+  .prophecy/metadata/sqlmodels/transformation_5_mountains_over_6000m_in_andes_with_high_gdp_countries:
+    name: transformation_5_mountains_over_6000m_in_andes_with_high_gdp_countries
     schema:
       entityType: ''
       providerType: Databricks
       fields:
-      - name: mountain
+      - name: mountain_name
         dataType:
           type: String
       - name: country
         dataType:
           type: String
-      - name: meters
+      - name: height
         dataType:
-          type: Integer
-      - name: feet
+          type: Float
+      - name: gdp_per_capita
         dataType:
-          type: Integer
-      - name: latitude
-        dataType:
-          type: Double
-      - name: longitude
-        dataType:
-          type: Double
-      - name: distance_from_ojos
-        dataType:
-          type: Double
+          type: Float
     description: null
     author: admin@prophecy.io
     files:
-    - models/mountains_6000m_near_ojos_del_salado.sql
-    - .prophecy/ide/models/mountains_6000m_near_ojos_del_salado.json
-    - models/schema.yml
+    - models/transformation_5_mountains_over_6000m_in_andes_with_high_gdp_countries.sql
+    - .prophecy/ide/models/transformation_5_mountains_over_6000m_in_andes_with_high_gdp_countries.json
     sqlDependencies:
       models: []
       datasets: []
       seeds: []
       sources: []
       snapshots: []
-    createdAt: '2025-04-17 20:20:09'
-  .prophecy/metadata/sqlmodels/five_highest_mountains_per_country:
-    name: five_highest_mountains_per_country
+    createdAt: '2025-04-19 20:17:50'
+  .prophecy/metadata/sqlmodels/transformation_6_top_five_mountains_south_of_ecuador_over_6000m:
+    name: transformation_6_top_five_mountains_south_of_ecuador_over_6000m
     schema:
       entityType: ''
       providerType: Databricks
@@ -119,102 +96,19 @@ sqlModels:
       - name: country
         dataType:
           type: String
-      - name: meters
+      - name: height
         dataType:
-          type: Integer
+          type: Float
       - name: feet
         dataType:
-          type: Integer
+          type: Float
       - name: latitude
         dataType:
           type: Double
       - name: longitude
         dataType:
           type: Double
-      - name: rank
-        dataType:
-          type: Integer
-    description: null
-    author: admin@prophecy.io
-    files:
-    - models/five_highest_mountains_per_country.sql
-    - .prophecy/ide/models/five_highest_mountains_per_country.json
-    - models/schema.yml
-    sqlDependencies:
-      models: []
-      datasets: []
-      seeds: []
-      sources: []
-      snapshots: []
-    createdAt: '2025-04-17 20:20:09'
-  .prophecy/metadata/sqlmodels/most_northern_five_mountains_per_country:
-    name: most_northern_five_mountains_per_country
-    schema:
-      entityType: ''
-      providerType: Databricks
-      fields:
-      - name: mountain
-        dataType:
-          type: String
-      - name: country
-        dataType:
-          type: String
-      - name: meters
-        dataType:
-          type: Integer
-      - name: feet
-        dataType:
-          type: Integer
-      - name: latitude
-        dataType:
-          type: Double
-      - name: longitude
-        dataType:
-          type: Double
-      - name: rn
-        dataType:
-          type: Integer
-    description: null
-    author: admin@prophecy.io
-    files:
-    - models/most_northern_five_mountains_per_country.sql
-    - .prophecy/ide/models/most_northern_five_mountains_per_country.json
-    - models/schema.yml
-    sqlDependencies:
-      models: []
-      datasets: []
-      seeds: []
-      sources: []
-      snapshots: []
-    createdAt: '2025-04-17 20:20:09'
-  .prophecy/metadata/sqlmodels/ten_highest_mountains_per_continent:
-    name: ten_highest_mountains_per_continent
-    schema:
-      entityType: ''
-      providerType: Databricks
-      fields:
-      - name: mountain
-        dataType:
-          type: String
-      - name: country
-        dataType:
-          type: String
-      - name: meters
-        dataType:
-          type: Integer
-      - name: feet
-        dataType:
-          type: Integer
-      - name: latitude
-        dataType:
-          type: Double
-      - name: longitude
-        dataType:
-          type: Double
-      - name: Continent_Name
-        dataType:
-          type: String
-      - name: Continent_Code
+      - name: region
         dataType:
           type: String
       - name: rank
@@ -223,8 +117,62 @@ sqlModels:
     description: null
     author: admin@prophecy.io
     files:
-    - models/ten_highest_mountains_per_continent.sql
-    - .prophecy/ide/models/ten_highest_mountains_per_continent.json
+    - models/transformation_6_top_five_mountains_south_of_ecuador_over_6000m.sql
+    - .prophecy/ide/models/transformation_6_top_five_mountains_south_of_ecuador_over_6000m.json
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-19 20:17:50'
+  .prophecy/metadata/sqlmodels/transformation_3_three_highest_peaks_for_each_country_southward_from_ecuador_:
+    name: transformation_3_three_highest_peaks_for_each_country_southward_from_ecuador_
+    schema: null
+    description: null
+    author: admin@prophecy.io
+    files:
+    - models/transformation_3_three_highest_peaks_for_each_country_southward_from_ecuador_.sql
+    - .prophecy/ide/models/transformation_3_three_highest_peaks_for_each_country_southward_from_ecuador_.json
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-19 20:17:50'
+  .prophecy/metadata/sqlmodels/transformation_1_ten_highest_peaks_in_south_america:
+    name: transformation_1_ten_highest_peaks_in_south_america
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: mountain_name
+        dataType:
+          type: String
+      - name: country
+        dataType:
+          type: String
+      - name: height
+        dataType:
+          type: Integer
+      - name: feet
+        dataType:
+          type: Integer
+      - name: latitude
+        dataType:
+          type: Double
+      - name: longitude
+        dataType:
+          type: Double
+      - name: GDP_Per_Capita
+        dataType:
+          type: Double
+    description: null
+    author: admin@prophecy.io
+    files:
+    - models/transformation_1_ten_highest_peaks_in_south_america.sql
+    - .prophecy/ide/models/transformation_1_ten_highest_peaks_in_south_america.json
     - models/schema.yml
     sqlDependencies:
       models: []
@@ -232,35 +180,46 @@ sqlModels:
       seeds: []
       sources: []
       snapshots: []
-    createdAt: '2025-04-17 20:20:09'
-  .prophecy/metadata/sqlmodels/country_codes_and_continent_code:
-    name: country_codes_and_continent_code
+    createdAt: '2025-04-19 20:17:50'
+  .prophecy/metadata/sqlmodels/transformation_2_three_highest_mountains_in_andean_countries:
+    name: transformation_2_three_highest_mountains_in_andean_countries
     schema:
       entityType: ''
       providerType: Databricks
       fields:
-      - name: country_name
+      - name: mountain
         dataType:
           type: String
-      - name: three_letter_country_code
+      - name: country
         dataType:
           type: String
-      - name: continent_code
+      - name: height
+        dataType:
+          type: Float
+      - name: feet
+        dataType:
+          type: Float
+      - name: latitude
+        dataType:
+          type: Double
+      - name: longitude
+        dataType:
+          type: Double
+      - name: region
         dataType:
           type: String
     description: null
     author: admin@prophecy.io
     files:
-    - models/country_codes_and_continent_code.sql
-    - .prophecy/ide/models/country_codes_and_continent_code.json
-    - models/schema.yml
+    - models/transformation_2_three_highest_mountains_in_andean_countries.sql
+    - .prophecy/ide/models/transformation_2_three_highest_mountains_in_andean_countries.json
     sqlDependencies:
       models: []
       datasets: []
       seeds: []
       sources: []
       snapshots: []
-    createdAt: '2025-04-17 20:20:09'
+    createdAt: '2025-04-19 20:17:50'
 sqlSnapshots: {}
 sqlTests: {}
 sqlMacros:
@@ -272,7 +231,7 @@ sqlMacros:
     files:
     - macros/generate_schema_name.sql
     - .prophecy/ide/macros/generate_schema_name.json
-    createdAt: '2025-04-17 20:17:03'
+    createdAt: '2025-04-19 19:33:33'
 sqlSeeds: {}
 sqlSources:
   .prophecy/metadata/sqlsources/product_dev_mountains:
@@ -280,8 +239,8 @@ sqlSources:
     description: ''
     author: admin@prophecy.io
     files:
-    - prophecy-sources/sources.yml
-    createdAt: '2025-04-17 20:19:16'
+    - prophecy-sources/sources.
+    createdAt: '2025-04-19 20:01:24'
     tables:
     - name: mountains
       schema:
@@ -306,37 +265,40 @@ sqlSources:
         - name: longitude
           dataType:
             type: Double
+        - name: region
+          dataType:
+            type: String
       description: null
       author: admin@prophecy.io
       tableType: null
-      createdAt: '2025-04-17 20:19:16'
+      createdAt: '2025-04-19 20:01:24'
     - name: countries
       schema:
         entityType: ''
         providerType: databricks
         fields:
+        - name: Country_Name
+          dataType:
+            type: String
+        - name: Country_Code
+          dataType:
+            type: String
         - name: Continent_Name
           dataType:
             type: String
         - name: Continent_Code
           dataType:
             type: String
-        - name: Country_Name
+        - name: Population
           dataType:
-            type: String
-        - name: Two_Letter_Country_Code
-          dataType:
-            type: String
-        - name: Three_Letter_Country_Code
-          dataType:
-            type: String
-        - name: Country_Number
+            type: Double
+        - name: GDP_Per_Capita
           dataType:
             type: Double
       description: null
       author: admin@prophecy.io
       tableType: null
-      createdAt: '2025-04-17 20:19:16'
+      createdAt: '2025-04-19 20:01:24'
 sqlUnreferencedSources: {}
 sqlOrchestratorPipelines: {}
 sqlBusinessApps: {}
@@ -344,7 +306,7 @@ sqlPipeline:
   name: sqlPipeline
   description: null
   author: admin@prophecy.io
-  createdAt: '2025-04-17 20:17:01'
+  createdAt: '2025-04-19 19:33:29'
 dependencies: []
 projectDependencies: {}
 flags:

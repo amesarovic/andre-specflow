@@ -8,6 +8,11 @@
       "sources" : [ ]
     },
     "graphConfig" : {
+      "entityConfig" : {
+        "database" : "\"andre_dev\"",
+        "schema" : "\"andre_mt_01_out\"",
+        "type" : "ModelConfig"
+      },
       "userDefinedConfig" : {
         "vars" : { }
       }

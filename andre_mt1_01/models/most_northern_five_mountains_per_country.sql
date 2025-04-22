@@ -1,6 +1,13 @@
+{{
+  config({    
+    "database": "andre_dev",
+    "schema": "andre_mt_01_out"
+  })
+}}
+
 WITH mountains_cte_1 AS (
 
-  SELECT *
+  SELECT * 
   
   FROM {{ source('product_dev.mountains', 'mountains') }}
 
@@ -23,7 +30,7 @@ ranked_mountains AS (
 
 top_ranked_mountains AS (
 
-  SELECT *
+  SELECT * 
   
   FROM ranked_mountains
   

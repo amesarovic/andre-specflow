@@ -1,5 +1,5 @@
 {
-  "name" : "andre_mt1_01",
+  "name" : "andre_mts_2a",
   "fileSystem" : {
     "type" : "Folder",
     "name" : "",
@@ -173,6 +173,22 @@
       "https://github.com/prophecy-io/databricks-sql-basics" : "172"
     }
   },
-  "entitiesToSync" : [ ],
+  "entitiesToSync" : [ {
+    "name" : "transformation_2_three_highest_mountains_in_andean_countries",
+    "type" : "Model",
+    "syncedOnce" : false
+  }, {
+    "name" : "transformation_4_ten_highest_peaks_in_non_andean_south_american_countries",
+    "type" : "Model",
+    "syncedOnce" : false
+  }, {
+    "name" : "transformation_5_mountains_over_6000m_in_andes_with_high_gdp_countries",
+    "type" : "Model",
+    "syncedOnce" : false
+  }, {
+    "name" : "transformation_6_top_five_mountains_south_of_ecuador_over_6000m",
+    "type" : "Model",
+    "syncedOnce" : false
+  } ],
   "frontEndLanguage" : "sql"
 }

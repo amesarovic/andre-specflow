@@ -2,12 +2,17 @@
   "id" : "mountains_6000m_near_ojos_del_salado",
   "metainfo" : {
     "label" : "mountains_6000m_near_ojos_del_salado",
-    "autoLayout" : true,
+    "autoLayout" : false,
     "staleState" : "none",
     "sourceSuggestions" : {
       "sources" : [ ]
     },
     "graphConfig" : {
+      "entityConfig" : {
+        "database" : "\"andre_dev\"",
+        "schema" : "\"andre_mt_01_out\"",
+        "type" : "ModelConfig"
+      },
       "userDefinedConfig" : {
         "vars" : { }
       }
@@ -20,6 +25,8 @@
       "component" : "TargetModel",
       "metadata" : {
         "label" : "mountains_6000m_near_ojos_del_salado",
+        "x" : 820,
+        "y" : 20,
         "phase" : 0,
         "isLabelGrayed" : false
       },
@@ -52,6 +59,8 @@
       "component" : "Filter",
       "metadata" : {
         "label" : "nearby_locations",
+        "x" : 620,
+        "y" : 20,
         "phase" : 0,
         "macroDependencies" : [ ],
         "isLabelGrayed" : false
@@ -81,6 +90,8 @@
       "component" : "Reformat",
       "metadata" : {
         "label" : "distance_calculation",
+        "x" : 420,
+        "y" : 20,
         "phase" : 0,
         "macroDependencies" : [ ],
         "isLabelGrayed" : false
@@ -144,6 +155,8 @@
       "component" : "Source",
       "metadata" : {
         "label" : "mountains_cte_1",
+        "x" : 20,
+        "y" : 20,
         "phase" : 0,
         "isLabelGrayed" : false
       },
@@ -170,6 +183,8 @@
       "component" : "Filter",
       "metadata" : {
         "label" : "mountains_above_6000",
+        "x" : 220,
+        "y" : 20,
         "phase" : 0,
         "macroDependencies" : [ ],
         "isLabelGrayed" : false
