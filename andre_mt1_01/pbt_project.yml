@@ -99,6 +99,7 @@ sqlModels:
     files:
     - models/mountains_6000m_near_ojos_del_salado.sql
     - .prophecy/ide/models/mountains_6000m_near_ojos_del_salado.json
+    - models/schema.yml
     sqlDependencies:
       models: []
       datasets: []
@@ -108,31 +109,7 @@ sqlModels:
     createdAt: '2025-04-17 20:20:09'
   .prophecy/metadata/sqlmodels/five_highest_mountains_per_country:
     name: five_highest_mountains_per_country
-    schema:
-      entityType: ''
-      providerType: Databricks
-      fields:
-      - name: mountain
-        dataType:
-          type: String
-      - name: country
-        dataType:
-          type: String
-      - name: meters
-        dataType:
-          type: Integer
-      - name: feet
-        dataType:
-          type: Integer
-      - name: latitude
-        dataType:
-          type: Double
-      - name: longitude
-        dataType:
-          type: Double
-      - name: rank
-        dataType:
-          type: Integer
+    schema: null
     description: null
     author: admin@prophecy.io
     files:
@@ -178,6 +155,7 @@ sqlModels:
     files:
     - models/most_northern_five_mountains_per_country.sql
     - .prophecy/ide/models/most_northern_five_mountains_per_country.json
+    - models/schema.yml
     sqlDependencies:
       models: []
       datasets: []
@@ -223,6 +201,7 @@ sqlModels:
     files:
     - models/ten_highest_mountains_per_continent.sql
     - .prophecy/ide/models/ten_highest_mountains_per_continent.json
+    - models/schema.yml
     sqlDependencies:
       models: []
       datasets: []
@@ -250,6 +229,7 @@ sqlModels:
     files:
     - models/country_codes_and_continent_code.sql
     - .prophecy/ide/models/country_codes_and_continent_code.json
+    - models/schema.yml
     sqlDependencies:
       models: []
       datasets: []
@@ -276,7 +256,7 @@ sqlSources:
     description: ''
     author: admin@prophecy.io
     files:
-    - prophecy-sources/sources.
+    - prophecy-sources/sources.yml
     createdAt: '2025-04-17 20:19:16'
     tables:
     - name: mountains

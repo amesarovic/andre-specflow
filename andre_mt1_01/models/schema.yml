@@ -52,3 +52,93 @@ models:
     dataType:
       type: "Integer"
   tests: []
+- name: "country_codes_and_continent_code"
+  columns:
+  - name: "country_name"
+    dataType:
+      type: "String"
+  - name: "three_letter_country_code"
+    dataType:
+      type: "String"
+  - name: "continent_code"
+    dataType:
+      type: "String"
+  tests: []
+- name: "most_northern_five_mountains_per_country"
+  columns:
+  - name: "rn"
+    dataType:
+      type: "Integer"
+  - name: "latitude"
+    dataType:
+      type: "Double"
+  - name: "feet"
+    dataType:
+      type: "Integer"
+  - name: "country"
+    dataType:
+      type: "String"
+  - name: "longitude"
+    dataType:
+      type: "Double"
+  - name: "mountain"
+    dataType:
+      type: "String"
+  - name: "meters"
+    dataType:
+      type: "Integer"
+  tests: []
+- name: "mountains_6000m_near_ojos_del_salado"
+  columns:
+  - name: "latitude"
+    dataType:
+      type: "Double"
+  - name: "feet"
+    dataType:
+      type: "Integer"
+  - name: "country"
+    dataType:
+      type: "String"
+  - name: "longitude"
+    dataType:
+      type: "Double"
+  - name: "distance_from_ojos"
+    dataType:
+      type: "Double"
+  - name: "mountain"
+    dataType:
+      type: "String"
+  - name: "meters"
+    dataType:
+      type: "Integer"
+  tests: []
+- name: "ten_highest_mountains_per_continent"
+  columns:
+  - name: "Continent_Name"
+    dataType:
+      type: "String"
+  - name: "latitude"
+    dataType:
+      type: "Double"
+  - name: "rank"
+    dataType:
+      type: "Integer"
+  - name: "feet"
+    dataType:
+      type: "Integer"
+  - name: "country"
+    dataType:
+      type: "String"
+  - name: "longitude"
+    dataType:
+      type: "Double"
+  - name: "Continent_Code"
+    dataType:
+      type: "String"
+  - name: "mountain"
+    dataType:
+      type: "String"
+  - name: "meters"
+    dataType:
+      type: "Integer"
+  tests: []

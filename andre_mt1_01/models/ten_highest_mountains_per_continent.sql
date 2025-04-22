@@ -1,6 +1,13 @@
+{{
+  config({    
+    "database": "andre_dev",
+    "schema": "andre_mt_01_out"
+  })
+}}
+
 WITH mountains_cte_1 AS (
 
-  SELECT *
+  SELECT * 
   
   FROM {{ source('product_dev.mountains', 'mountains') }}
 
@@ -8,7 +15,7 @@ WITH mountains_cte_1 AS (
 
 countries_cte_1 AS (
 
-  SELECT *
+  SELECT * 
   
   FROM {{ source('product_dev.mountains', 'countries') }}
 
@@ -51,7 +58,7 @@ partitioned_data AS (
 
 top_ranked_data AS (
 
-  SELECT *
+  SELECT * 
   
   FROM partitioned_data
   

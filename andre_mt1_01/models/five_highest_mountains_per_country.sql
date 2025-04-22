@@ -1,3 +1,10 @@
+{{
+  config({    
+    "database": "andre_dev ",
+    "schema": "andre_mt_01_out"
+  })
+}}
+
 WITH mountains_cte AS (
 
   SELECT * 

@@ -173,22 +173,6 @@
       "https://github.com/prophecy-io/databricks-sql-basics" : "172"
     }
   },
-  "entitiesToSync" : [ {
-    "name" : "country_codes_and_continent_code",
-    "type" : "Model",
-    "syncedOnce" : false
-  }, {
-    "name" : "most_northern_five_mountains_per_country",
-    "type" : "Model",
-    "syncedOnce" : false
-  }, {
-    "name" : "mountains_6000m_near_ojos_del_salado",
-    "type" : "Model",
-    "syncedOnce" : false
-  }, {
-    "name" : "ten_highest_mountains_per_continent",
-    "type" : "Model",
-    "syncedOnce" : false
-  } ],
+  "entitiesToSync" : [ ],
   "frontEndLanguage" : "sql"
 }

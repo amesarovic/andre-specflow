@@ -1,6 +1,13 @@
+{{
+  config({    
+    "database": "andre_dev",
+    "schema": "andre_mt_01_out"
+  })
+}}
+
 WITH mountains_cte_1 AS (
 
-  SELECT *
+  SELECT * 
   
   FROM {{ source('product_dev.mountains', 'mountains') }}
 
@@ -8,7 +15,7 @@ WITH mountains_cte_1 AS (
 
 mountains_above_6000 AS (
 
-  SELECT *
+  SELECT * 
   
   FROM mountains_cte_1
   
@@ -38,7 +45,7 @@ distance_calculation AS (
 
 nearby_locations AS (
 
-  SELECT *
+  SELECT * 
   
   FROM distance_calculation
   
