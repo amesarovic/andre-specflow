@@ -109,7 +109,31 @@ sqlModels:
     createdAt: '2025-04-17 20:20:09'
   .prophecy/metadata/sqlmodels/five_highest_mountains_per_country:
     name: five_highest_mountains_per_country
-    schema: null
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: mountain
+        dataType:
+          type: String
+      - name: country
+        dataType:
+          type: String
+      - name: meters
+        dataType:
+          type: Integer
+      - name: feet
+        dataType:
+          type: Integer
+      - name: latitude
+        dataType:
+          type: Double
+      - name: longitude
+        dataType:
+          type: Double
+      - name: rank
+        dataType:
+          type: Integer
     description: null
     author: admin@prophecy.io
     files:
