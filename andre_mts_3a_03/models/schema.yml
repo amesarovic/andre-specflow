@@ -1,0 +1,27 @@
+---
+version: 2
+models:
+- name: "transformation_3_highest_standard_of_living_countries_mountain_selection"
+  columns:
+  - name: "country_standard_of_living"
+    dataType:
+      type: "Double"
+  - name: "latitude"
+    dataType:
+      type: "Double"
+  - name: "country"
+    dataType:
+      type: "String"
+  - name: "longitude"
+    dataType:
+      type: "Double"
+  - name: "region"
+    dataType:
+      type: "String"
+  - name: "mountain"
+    dataType:
+      type: "String"
+  - name: "meters"
+    dataType:
+      type: "Integer"
+  tests: []

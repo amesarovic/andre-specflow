@@ -1,0 +1,497 @@
+{
+  "id" : "transformation_3_highest_standard_of_living_countries_mountain_selection",
+  "metainfo" : {
+    "label" : "transformation_3_highest_standard_of_living_countries_mountain_selection",
+    "autoLayout" : false,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "userDefinedConfig" : {
+        "vars" : { }
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "mountains_ordere##TLxO3qXU" : {
+      "id" : "mountains_ordere##TLxO3qXU",
+      "component" : "OrderBy",
+      "metadata" : {
+        "label" : "mountains_ordered_by_height",
+        "x" : 1020,
+        "y" : 120,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "orders" : [ {
+          "expression" : {
+            "expression" : "meters"
+          },
+          "sortType" : "desc"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "Axa8AnjX",
+          "slug" : "joined_mountains"
+        } ],
+        "outputs" : [ {
+          "id" : "n9D2uDFK",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 8
+    },
+    "limited_results##QhsZVmUc" : {
+      "id" : "limited_results##QhsZVmUc",
+      "component" : "Limit",
+      "metadata" : {
+        "label" : "limited_results",
+        "x" : 1220,
+        "y" : 120,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "limit" : {
+          "expression" : "3"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "oMU0Xv72",
+          "slug" : "mountains_ordered_by_height"
+        } ],
+        "outputs" : [ {
+          "id" : "QAP0hr9x",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 9
+    },
+    "final##v97564F2" : {
+      "id" : "final##v97564F2",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "transformation_3_highest_standard_of_living_countries_mountain_selection",
+        "x" : 1420,
+        "y" : 120,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT *\n\nFROM limited_results\n",
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "K4JI7FKj",
+          "slug" : "limited_results"
+        } ],
+        "outputs" : [ {
+          "id" : "ei51a1mC",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 10
+    },
+    "mountains_cte##BvBRAkxP" : {
+      "id" : "mountains_cte##BvBRAkxP",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "mountains_cte",
+        "x" : 220,
+        "y" : 20,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "mountains",
+          "sourceType" : "Source",
+          "sourceName" : "andre_dev.data"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "KsRFj2vG",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 1
+    },
+    "countries_cte##EOr6HNL8" : {
+      "id" : "countries_cte##EOr6HNL8",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "countries_cte",
+        "x" : 20,
+        "y" : 220,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "countries",
+          "sourceType" : "Source",
+          "sourceName" : "andre_dev.data"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "GzwbZS4y",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 0
+    },
+    "tall_mountains_s##EZAl4UII" : {
+      "id" : "tall_mountains_s##EZAl4UII",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "tall_mountains_south_america",
+        "x" : 420,
+        "y" : 20,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "condition" : {
+          "expression" : "meters > 5000 AND LOWER(region) = 'south america'"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "hrJX6UY5",
+          "slug" : "mountains_cte"
+        } ],
+        "outputs" : [ {
+          "id" : "ZGr2g2mp",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 2
+    },
+    "joined_mountains##Fj7ApQDK" : {
+      "id" : "joined_mountains##Fj7ApQDK",
+      "component" : "Join",
+      "metadata" : {
+        "label" : "joined_mountains",
+        "x" : 820,
+        "y" : 120,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "conditions" : [ {
+          "alias" : "c",
+          "expression" : {
+            "expression" : "fm.country = c.Country_Name"
+          },
+          "joinType" : ""
+        } ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "fm.mountain"
+          },
+          "_row_id" : "1755442393"
+        }, {
+          "expression" : {
+            "expression" : "fm.country"
+          },
+          "_row_id" : "2043795685"
+        }, {
+          "expression" : {
+            "expression" : "fm.meters"
+          },
+          "_row_id" : "1571363385"
+        }, {
+          "expression" : {
+            "expression" : "fm.latitude"
+          },
+          "_row_id" : "1692389902"
+        }, {
+          "expression" : {
+            "expression" : "fm.longitude"
+          },
+          "_row_id" : "1028435126"
+        }, {
+          "expression" : {
+            "expression" : "fm.region"
+          },
+          "_row_id" : "151653553"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(c.GDP_Per_Capita, 2)"
+          },
+          "alias" : "country_standard_of_living",
+          "_row_id" : "568252787"
+        } ],
+        "activeTab" : "conditions",
+        "columnsSelector" : [ ],
+        "headAlias" : "fm"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "Sail9jPH",
+          "slug" : "fm"
+        }, {
+          "id" : "qYVHZU3K",
+          "slug" : "c"
+        } ],
+        "outputs" : [ {
+          "id" : "pOMXsD1Q",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 7
+    },
+    "limit_3_results##hBitG9kD" : {
+      "id" : "limit_3_results##hBitG9kD",
+      "component" : "Limit",
+      "metadata" : {
+        "label" : "limit_3_results",
+        "x" : 620,
+        "y" : 220,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "limit" : {
+          "expression" : "3"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "UVgurXLS",
+          "slug" : "gdp_per_capita_desc"
+        } ],
+        "outputs" : [ {
+          "id" : "BaIiHvER",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 6
+    },
+    "filtered_mountai##NyhT24ky" : {
+      "id" : "filtered_mountai##NyhT24ky",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "filtered_mountains",
+        "x" : 620,
+        "y" : 20,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "mountain"
+          },
+          "_row_id" : "1669504483"
+        }, {
+          "expression" : {
+            "expression" : "country"
+          },
+          "_row_id" : "655990595"
+        }, {
+          "expression" : {
+            "expression" : "meters"
+          },
+          "_row_id" : "436025438"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(latitude, 2)"
+          },
+          "alias" : "latitude",
+          "_row_id" : "1941458838"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(longitude, 2)"
+          },
+          "alias" : "longitude",
+          "_row_id" : "1152451645"
+        }, {
+          "expression" : {
+            "expression" : "region"
+          },
+          "_row_id" : "1086447189"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "D5YcbU6y",
+          "slug" : "tall_mountains_south_america"
+        } ],
+        "outputs" : [ {
+          "id" : "fH8fJ8yL",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 3
+    },
+    "south_america_co##FJA9VIcC" : {
+      "id" : "south_america_co##FJA9VIcC",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "south_america_countries",
+        "x" : 220,
+        "y" : 220,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "condition" : {
+          "expression" : "LOWER(Continent_Name) = 'south america'"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "S5qAj3OU",
+          "slug" : "countries_cte"
+        } ],
+        "outputs" : [ {
+          "id" : "gL9V8iEX",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 4
+    },
+    "gdp_per_capita_d##pY8ToKYp" : {
+      "id" : "gdp_per_capita_d##pY8ToKYp",
+      "component" : "OrderBy",
+      "metadata" : {
+        "label" : "gdp_per_capita_desc",
+        "x" : 420,
+        "y" : 220,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "orders" : [ {
+          "expression" : {
+            "expression" : "GDP_Per_Capita"
+          },
+          "sortType" : "desc"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "jn5Fj8Bi",
+          "slug" : "south_america_countries"
+        } ],
+        "outputs" : [ {
+          "id" : "Vy7lkjNt",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 5
+    }
+  },
+  "connections" : [ {
+    "id" : "nV3dM3pz",
+    "source" : "mountains_cte##BvBRAkxP",
+    "sourcePort" : "KsRFj2vG",
+    "target" : "tall_mountains_s##EZAl4UII",
+    "targetPort" : "hrJX6UY5"
+  }, {
+    "id" : "gkLHoNgl",
+    "source" : "tall_mountains_s##EZAl4UII",
+    "sourcePort" : "ZGr2g2mp",
+    "target" : "filtered_mountai##NyhT24ky",
+    "targetPort" : "D5YcbU6y"
+  }, {
+    "id" : "YXAM92YJ",
+    "source" : "countries_cte##EOr6HNL8",
+    "sourcePort" : "GzwbZS4y",
+    "target" : "south_america_co##FJA9VIcC",
+    "targetPort" : "S5qAj3OU"
+  }, {
+    "id" : "zVa7jG8m",
+    "source" : "south_america_co##FJA9VIcC",
+    "sourcePort" : "gL9V8iEX",
+    "target" : "gdp_per_capita_d##pY8ToKYp",
+    "targetPort" : "jn5Fj8Bi"
+  }, {
+    "id" : "wY6AJK2H",
+    "source" : "gdp_per_capita_d##pY8ToKYp",
+    "sourcePort" : "Vy7lkjNt",
+    "target" : "limit_3_results##hBitG9kD",
+    "targetPort" : "UVgurXLS"
+  }, {
+    "id" : "QNBnDWyB",
+    "source" : "filtered_mountai##NyhT24ky",
+    "sourcePort" : "fH8fJ8yL",
+    "target" : "joined_mountains##Fj7ApQDK",
+    "targetPort" : "Sail9jPH"
+  }, {
+    "id" : "CJgsSx5I",
+    "source" : "limit_3_results##hBitG9kD",
+    "sourcePort" : "BaIiHvER",
+    "target" : "joined_mountains##Fj7ApQDK",
+    "targetPort" : "qYVHZU3K"
+  }, {
+    "id" : "OpHq3g0D",
+    "source" : "joined_mountains##Fj7ApQDK",
+    "sourcePort" : "pOMXsD1Q",
+    "target" : "mountains_ordere##TLxO3qXU",
+    "targetPort" : "Axa8AnjX"
+  }, {
+    "id" : "mPu5HHbG",
+    "source" : "mountains_ordere##TLxO3qXU",
+    "sourcePort" : "n9D2uDFK",
+    "target" : "limited_results##QhsZVmUc",
+    "targetPort" : "oMU0Xv72"
+  }, {
+    "id" : "CntE95PN",
+    "source" : "limited_results##QhsZVmUc",
+    "sourcePort" : "QAP0hr9x",
+    "target" : "final##v97564F2",
+    "targetPort" : "K4JI7FKj"
+  } ],
+  "component" : "Model"
+}

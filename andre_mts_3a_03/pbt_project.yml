@@ -1,0 +1,259 @@
+name: andre_mts_3a_03
+description: ''
+version: 0.0.1
+author: admin@prophecy.io
+language: sql
+buildSystem: ''
+buildSystemDetails: null
+pipelines: {}
+datasets: {}
+templates: {}
+jobs: {}
+gemContainer:
+  languageVersion: ''
+  gemLibsVersion: ''
+  gems: {}
+  dependencies: null
+functions:
+  author: null
+  createdAt: '2025-04-24 04:53:07'
+  udfs: {}
+  udafs: {}
+  expressions: {}
+  airflowFunctions: {}
+  businessRules: {}
+subgraphs: {}
+sqlModels:
+  .prophecy/metadata/sqlmodels/transformation_1_least_corrupt_countries_mountain_selection:
+    name: transformation_1_least_corrupt_countries_mountain_selection
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: mountain
+        dataType:
+          type: String
+      - name: country
+        dataType:
+          type: String
+      - name: meters
+        dataType:
+          type: Integer
+      - name: latitude
+        dataType:
+          type: Double
+      - name: longitude
+        dataType:
+          type: Double
+      - name: region
+        dataType:
+          type: String
+      - name: country_corruption_score
+        dataType:
+          type: Integer
+    description: null
+    author: admin@prophecy.io
+    files:
+    - models/transformation_1_least_corrupt_countries_mountain_selection.sql
+    - .prophecy/ide/models/transformation_1_least_corrupt_countries_mountain_selection.json
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-24 04:57:41'
+  .prophecy/metadata/sqlmodels/transformation_2_most_equal_countries_mountain_selection:
+    name: transformation_2_most_equal_countries_mountain_selection
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: mountain
+        dataType:
+          type: String
+      - name: country
+        dataType:
+          type: String
+      - name: meters
+        dataType:
+          type: Integer
+      - name: latitude
+        dataType:
+          type: Double
+      - name: longitude
+        dataType:
+          type: Double
+      - name: region
+        dataType:
+          type: String
+      - name: country_standard_of_living
+        dataType:
+          type: Double
+    description: null
+    author: admin@prophecy.io
+    files:
+    - models/transformation_2_most_equal_countries_mountain_selection.sql
+    - .prophecy/ide/models/transformation_2_most_equal_countries_mountain_selection.json
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-24 04:57:41'
+  .prophecy/metadata/sqlmodels/transformation_3_highest_standard_of_living_countries_mountain_selection:
+    name: transformation_3_highest_standard_of_living_countries_mountain_selection
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: mountain
+        dataType:
+          type: String
+      - name: country
+        dataType:
+          type: String
+      - name: meters
+        dataType:
+          type: Integer
+      - name: latitude
+        dataType:
+          type: Double
+      - name: longitude
+        dataType:
+          type: Double
+      - name: region
+        dataType:
+          type: String
+      - name: country_standard_of_living
+        dataType:
+          type: Double
+    description: null
+    author: admin@prophecy.io
+    files:
+    - models/transformation_3_highest_standard_of_living_countries_mountain_selection.sql
+    - .prophecy/ide/models/transformation_3_highest_standard_of_living_countries_mountain_selection.json
+    - models/schema.yml
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-04-24 04:57:41'
+sqlSnapshots: {}
+sqlTests: {}
+sqlMacros:
+  .prophecy/metadata/sqlmacros/generate_schema_name:
+    name: generate_schema_name
+    macroType: expression
+    description: null
+    author: admin@prophecy.io
+    files:
+    - macros/generate_schema_name.sql
+    - .prophecy/ide/macros/generate_schema_name.json
+    createdAt: '2025-04-24 04:53:11'
+sqlSeeds: {}
+sqlSources:
+  .prophecy/metadata/sqlsources/andre_dev_data:
+    name: andre_dev.data
+    description: ''
+    author: admin@prophecy.io
+    files:
+    - prophecy-sources/sources.
+    createdAt: '2025-04-24 04:57:05'
+    tables:
+    - name: mountains
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: mountain
+          dataType:
+            type: String
+        - name: country
+          dataType:
+            type: String
+        - name: meters
+          dataType:
+            type: Integer
+        - name: feet
+          dataType:
+            type: Integer
+        - name: latitude
+          dataType:
+            type: Double
+        - name: longitude
+          dataType:
+            type: Double
+        - name: region
+          dataType:
+            type: String
+      description: null
+      author: admin@prophecy.io
+      tableType: null
+      createdAt: '2025-04-24 04:57:05'
+    - name: countries
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: Country_Name
+          dataType:
+            type: String
+        - name: Country_Code
+          dataType:
+            type: String
+        - name: Continent_Name
+          dataType:
+            type: String
+        - name: Continent_Code
+          dataType:
+            type: String
+        - name: Population
+          dataType:
+            type: Double
+        - name: GDP_Per_Capita
+          dataType:
+            type: Double
+      description: null
+      author: admin@prophecy.io
+      tableType: null
+      createdAt: '2025-04-24 04:57:05'
+    - name: countries_corruption
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: country
+          dataType:
+            type: String
+        - name: score
+          dataType:
+            type: Integer
+      description: null
+      author: admin@prophecy.io
+      tableType: null
+      createdAt: '2025-04-24 04:57:05'
+sqlUnreferencedSources: {}
+sqlOrchestratorPipelines: {}
+sqlBusinessApps: {}
+sqlPipeline:
+  name: sqlPipeline
+  description: null
+  author: admin@prophecy.io
+  createdAt: '2025-04-24 04:53:07'
+dependencies: []
+projectDependencies:
+  '172':
+    projectUID: 172
+    projectName: ProphecyDatabricksSqlBasics
+    repositoryPath: gitUri=https://github.com/prophecy-io/databricks-sql-basics&subPath=
+    version: 0.0.4
+    isDefault: true
+    author: null
+    createdAt: '2025-04-24 04:52:43'
+flags:
+  shouldAddDefaultDependenciesIfAbsent: false
+pipelineConfigurations: {}

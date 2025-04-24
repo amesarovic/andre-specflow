@@ -1,0 +1,580 @@
+{
+  "id" : "transformation_1_least_corrupt_countries_mountain_selection",
+  "metainfo" : {
+    "label" : "transformation_1_least_corrupt_countries_mountain_selection",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "userDefinedConfig" : {
+        "vars" : { }
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "final##RvI8mDDD" : {
+      "id" : "final##RvI8mDDD",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "transformation_1_least_corrupt_countries_mountain_selection",
+        "x" : 1620,
+        "y" : 120,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT *\n\nFROM limit_3_from_cte_5\n",
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "WwU67YSC",
+          "slug" : "limit_3_from_cte_5"
+        } ],
+        "outputs" : [ {
+          "id" : "mG4zBPjF",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 12
+    },
+    "mountains_cte##NxfPglyL" : {
+      "id" : "mountains_cte##NxfPglyL",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "mountains_cte",
+        "x" : 420,
+        "y" : 20,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "mountains",
+          "sourceType" : "Source",
+          "sourceName" : "andre_dev.data"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "diOQVMTU",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 2
+    },
+    "joined_mountains##GIROdV6k" : {
+      "id" : "joined_mountains##GIROdV6k",
+      "component" : "Join",
+      "metadata" : {
+        "label" : "joined_mountains",
+        "x" : 1020,
+        "y" : 120,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "conditions" : [ {
+          "alias" : "lcc",
+          "expression" : {
+            "expression" : "fm.country = lcc.country"
+          },
+          "joinType" : ""
+        } ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "fm.mountain"
+          },
+          "_row_id" : "825218713"
+        }, {
+          "expression" : {
+            "expression" : "fm.country"
+          },
+          "_row_id" : "2084570677"
+        }, {
+          "expression" : {
+            "expression" : "fm.meters"
+          },
+          "_row_id" : "667575615"
+        }, {
+          "expression" : {
+            "expression" : "fm.latitude"
+          },
+          "_row_id" : "1970877806"
+        }, {
+          "expression" : {
+            "expression" : "fm.longitude"
+          },
+          "_row_id" : "345464160"
+        }, {
+          "expression" : {
+            "expression" : "fm.region"
+          },
+          "_row_id" : "1770296112"
+        }, {
+          "expression" : {
+            "expression" : "lcc.country_corruption_score"
+          },
+          "_row_id" : "1132929443"
+        } ],
+        "activeTab" : "conditions",
+        "columnsSelector" : [ ],
+        "headAlias" : "fm"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "mYeqtHvJ",
+          "slug" : "fm"
+        }, {
+          "id" : "g2xWtOo1",
+          "slug" : "lcc"
+        } ],
+        "outputs" : [ {
+          "id" : "efAL5aLJ",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 9
+    },
+    "countries_cte##RzZV0Vf5" : {
+      "id" : "countries_cte##RzZV0Vf5",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "countries_cte",
+        "x" : 20,
+        "y" : 320,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "countries",
+          "sourceType" : "Source",
+          "sourceName" : "andre_dev.data"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "chBcNsDO",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 1
+    },
+    "limit_3_from_cte##IgP014Ql" : {
+      "id" : "limit_3_from_cte##IgP014Ql",
+      "component" : "Limit",
+      "metadata" : {
+        "label" : "limit_3_from_cte_5",
+        "x" : 1420,
+        "y" : 120,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "limit" : {
+          "expression" : "3"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "RTIjlCKG",
+          "slug" : "sorted_mountains"
+        } ],
+        "outputs" : [ {
+          "id" : "g7J59LcZ",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 11
+    },
+    "limited_results##GsZajMKU" : {
+      "id" : "limited_results##GsZajMKU",
+      "component" : "Limit",
+      "metadata" : {
+        "label" : "limited_results",
+        "x" : 620,
+        "y" : 220,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "limit" : {
+          "expression" : "3"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "qsxjhZRI",
+          "slug" : "ordered_by_score"
+        } ],
+        "outputs" : [ {
+          "id" : "cDtAtgpN",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 7
+    },
+    "sorted_mountains##HCmQUetj" : {
+      "id" : "sorted_mountains##HCmQUetj",
+      "component" : "OrderBy",
+      "metadata" : {
+        "label" : "sorted_mountains",
+        "x" : 1220,
+        "y" : 120,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "orders" : [ {
+          "expression" : {
+            "expression" : "meters"
+          },
+          "sortType" : "desc"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "Lr5EZjEL",
+          "slug" : "joined_mountains"
+        } ],
+        "outputs" : [ {
+          "id" : "crZX60Sw",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 10
+    },
+    "tall_mountains_s##HrlE0EIf" : {
+      "id" : "tall_mountains_s##HrlE0EIf",
+      "component" : "Filter",
+      "metadata" : {
+        "label" : "tall_mountains_south_america",
+        "x" : 620,
+        "y" : 20,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "condition" : {
+          "expression" : "meters > 5000 AND region = 'South America'"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "r2hQzCK3",
+          "slug" : "mountains_cte"
+        } ],
+        "outputs" : [ {
+          "id" : "kCfssHWK",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 3
+    },
+    "filtered_mountai##RlC33TcC" : {
+      "id" : "filtered_mountai##RlC33TcC",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "filtered_mountains",
+        "x" : 820,
+        "y" : 20,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "mountain"
+          },
+          "_row_id" : "1058098405"
+        }, {
+          "expression" : {
+            "expression" : "country"
+          },
+          "_row_id" : "70295468"
+        }, {
+          "expression" : {
+            "expression" : "meters"
+          },
+          "_row_id" : "1147439286"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(latitude, 2)"
+          },
+          "alias" : "latitude",
+          "_row_id" : "196069377"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(longitude, 2)"
+          },
+          "alias" : "longitude",
+          "_row_id" : "441363708"
+        }, {
+          "expression" : {
+            "expression" : "region"
+          },
+          "_row_id" : "632574267"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "wSjxGM1q",
+          "slug" : "tall_mountains_south_america"
+        } ],
+        "outputs" : [ {
+          "id" : "Ylvv4IUs",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 4
+    },
+    "south_america_co##cPS5BJsi" : {
+      "id" : "south_america_co##cPS5BJsi",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "south_america_countries",
+        "x" : 220,
+        "y" : 220,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "out",
+          "id" : "out",
+          "language" : "sql",
+          "content" : "SELECT *\n\nFROM countries_corruption_cte\n\nWHERE country IN (\n        SELECT Country_Name\n        \n        FROM countries_cte\n        \n        WHERE Continent_Name = 'South America'\n       )\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "SdTADisk",
+          "slug" : "countries_corruption_cte"
+        }, {
+          "id" : "PUZUdcvt",
+          "slug" : "countries_cte"
+        } ],
+        "outputs" : [ {
+          "id" : "gATJHzx6",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 5
+    },
+    "least_corrupt_co##oFwzGVOw" : {
+      "id" : "least_corrupt_co##oFwzGVOw",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "least_corrupt_countries",
+        "x" : 820,
+        "y" : 220,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "country"
+          },
+          "_row_id" : "1910414079"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(score, 2)"
+          },
+          "alias" : "country_corruption_score",
+          "_row_id" : "1395947306"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "hGCANZeP",
+          "slug" : "limited_results"
+        } ],
+        "outputs" : [ {
+          "id" : "JzYN2gcl",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 8
+    },
+    "ordered_by_score##tkHIvs1L" : {
+      "id" : "ordered_by_score##tkHIvs1L",
+      "component" : "OrderBy",
+      "metadata" : {
+        "label" : "ordered_by_score",
+        "x" : 420,
+        "y" : 220,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "orders" : [ {
+          "expression" : {
+            "expression" : "score"
+          },
+          "sortType" : "desc"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "jdUa9YsV",
+          "slug" : "south_america_countries"
+        } ],
+        "outputs" : [ {
+          "id" : "yu0JY2UE",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 6
+    },
+    "countries_corrup##jIbl0D8j" : {
+      "id" : "countries_corrup##jIbl0D8j",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "countries_corruption_cte",
+        "x" : 20,
+        "y" : 120,
+        "phase" : 0,
+        "isLabelGrayed" : false
+      },
+      "properties" : {
+        "table" : {
+          "name" : "countries_corruption",
+          "sourceType" : "Source",
+          "sourceName" : "andre_dev.data"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "kerFDox3",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "index" : 0
+    }
+  },
+  "connections" : [ {
+    "id" : "u5QLgtfR",
+    "source" : "mountains_cte##NxfPglyL",
+    "sourcePort" : "diOQVMTU",
+    "target" : "tall_mountains_s##HrlE0EIf",
+    "targetPort" : "r2hQzCK3"
+  }, {
+    "id" : "RChJaYUf",
+    "source" : "tall_mountains_s##HrlE0EIf",
+    "sourcePort" : "kCfssHWK",
+    "target" : "filtered_mountai##RlC33TcC",
+    "targetPort" : "wSjxGM1q"
+  }, {
+    "id" : "DZjrBxEg",
+    "source" : "countries_corrup##jIbl0D8j",
+    "sourcePort" : "kerFDox3",
+    "target" : "south_america_co##cPS5BJsi",
+    "targetPort" : "SdTADisk"
+  }, {
+    "id" : "HkV3VBp3",
+    "source" : "countries_cte##RzZV0Vf5",
+    "sourcePort" : "chBcNsDO",
+    "target" : "south_america_co##cPS5BJsi",
+    "targetPort" : "PUZUdcvt"
+  }, {
+    "id" : "tRr6XHye",
+    "source" : "south_america_co##cPS5BJsi",
+    "sourcePort" : "gATJHzx6",
+    "target" : "ordered_by_score##tkHIvs1L",
+    "targetPort" : "jdUa9YsV"
+  }, {
+    "id" : "b01QMDfB",
+    "source" : "ordered_by_score##tkHIvs1L",
+    "sourcePort" : "yu0JY2UE",
+    "target" : "limited_results##GsZajMKU",
+    "targetPort" : "qsxjhZRI"
+  }, {
+    "id" : "F6R9Qj3B",
+    "source" : "limited_results##GsZajMKU",
+    "sourcePort" : "cDtAtgpN",
+    "target" : "least_corrupt_co##oFwzGVOw",
+    "targetPort" : "hGCANZeP"
+  }, {
+    "id" : "BXZMkY6u",
+    "source" : "filtered_mountai##RlC33TcC",
+    "sourcePort" : "Ylvv4IUs",
+    "target" : "joined_mountains##GIROdV6k",
+    "targetPort" : "mYeqtHvJ"
+  }, {
+    "id" : "NXUiIQjz",
+    "source" : "least_corrupt_co##oFwzGVOw",
+    "sourcePort" : "JzYN2gcl",
+    "target" : "joined_mountains##GIROdV6k",
+    "targetPort" : "g2xWtOo1"
+  }, {
+    "id" : "GnMXS2R6",
+    "source" : "joined_mountains##GIROdV6k",
+    "sourcePort" : "efAL5aLJ",
+    "target" : "sorted_mountains##HCmQUetj",
+    "targetPort" : "Lr5EZjEL"
+  }, {
+    "id" : "jv2YdPxJ",
+    "source" : "sorted_mountains##HCmQUetj",
+    "sourcePort" : "crZX60Sw",
+    "target" : "limit_3_from_cte##IgP014Ql",
+    "targetPort" : "RTIjlCKG"
+  }, {
+    "id" : "iCzxsHBM",
+    "source" : "limit_3_from_cte##IgP014Ql",
+    "sourcePort" : "g7J59LcZ",
+    "target" : "final##RvI8mDDD",
+    "targetPort" : "WwU67YSC"
+  } ],
+  "component" : "Model"
+}
